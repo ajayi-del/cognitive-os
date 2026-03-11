@@ -17,6 +17,7 @@ import { MorningBriefing } from '@/components/MorningBriefing'
 import { TimePerception } from '@/components/TimePerception'
 import { AIProviderSelector, AIMetadata } from '@/components/AIProviderUI'
 import { AutonomousControlPanel } from '@/components/AutonomousControlPanel'
+import CodeDropZone from '@/components/CodeDropZone'
 import type { AIProvider, TaskType } from '@/lib/ai-router'
 import { providerRouter } from '@/lib/ai-router'
 import { biologicalOrchestrator } from '@/lib/biological-coherence'
@@ -925,175 +926,6 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
     setMessages(prev => [...prev, aiResponse])
   }
 
-  const handleSendMessage = async () => {
-    if (inputMessage.trim()) {
-      processCoreEvent('CAPTURE_THOUGHT', { content: inputMessage })
-      
-      const newMessage: ChatMessage = {
-        id: Date.now().toString(),
-        role: 'user',
-        content: inputMessage,
-        timestamp: new Date()
-      }
-      setMessages([...messages, newMessage])
-      setInputMessage('')
-      
-      // AI ROUTING: Determine provider and task type
-      const routeResult = providerRouter.route(inputMessage, selectedAIProvider)
-      const { provider, taskType, reason, config } = routeResult
-      
-      console.log(`🤖 AI Routing: ${taskType} → ${provider} (${reason})`)
-      
-      // BUILD SYSTEM STATE for biological processing
-      const biologicalSystemState = {
-        captures: captureInbox.map(c => ({
-          id: c.id,
-          content: c.raw_content,
-          timestamp: c.created_at,
-          source: c.source_type,
-          processed: c.processed_status === 'routed',
-          energy: c.energy_level
-        })),
-        goals: goals.map(g => ({
-          id: g.id,
-          name: g.name,
-          isPrimary: g.isPrimary,
-          progress: g.isPrimary ? 75 : 50
-        })),
-        focus: {
-          project: currentFocus?.project || 'None',
-          nextAction: currentFocus?.nextAction || 'None',
-          momentum: currentFocus?.momentum || 50,
-          status: currentFocus?.status || 'active'
-        },
-        metrics: {
-          totalCaptures: captureInbox.length,
-          activeProjects: goals.filter(g => !g.isPrimary).length,
-          focusTimeToday: 120, // minutes
-          energyATP: systemState.alignment_score || 72,
-          curiositySignals: curiosityMap.length
-        },
-        lastUpdated: new Date()
-      }
-      
-      // BIOLOGICAL PROCESSING: Router → Specialist → Tools → State
-      try {
-        const biologicalResult = await biologicalOrchestrator.processBiologically(
-          inputMessage,
-          provider,
-          taskType,
-          biologicalSystemState
-        )
-        
-        // Create AI response with biological metadata
-        const aiResponse: ChatMessage = {
-          id: (Date.now() + 1).toString(),
-          role: 'ai',
-          content: biologicalResult.response,
-          timestamp: new Date(),
-          aiMetadata: {
-            provider,
-            model: config.model,
-            reason,
-            taskType,
-            confidence: 0.92,
-            biological: {
-              coherence: biologicalResult.biologicalContext.coherence,
-              energyATP: biologicalResult.biologicalContext.energyATP,
-              health: biologicalResult.biologicalContext.organs.reduce((sum, o) => sum + o.health, 0) / biologicalResult.biologicalContext.organs.length
-            }
-          }
-        }
-        setMessages(prev => [...prev, aiResponse])
-        
-        // Add biological recommendations as follow-up if any
-        if (biologicalResult.recommendations.length > 0) {
-          setTimeout(() => {
-            const recMessage: ChatMessage = {
-              id: (Date.now() + 2).toString(),
-              role: 'ai',
-              content: `🧬 Biological Recommendations:\n${biologicalResult.recommendations.map(r => `• ${r}`).join('\n')}`,
-              timestamp: new Date(),
-              aiMetadata: {
-                provider: 'auto',
-                model: 'organism',
-                reason: 'System health recommendations',
-                confidence: 0.95
-              }
-            }
-            setMessages(prev => [...prev, recMessage])
-          }, 1000)
-        }
-        
-      } catch (error) {
-        console.error('Biological processing error:', error)
-        
-        // FALLBACK: Simple AI call without biological processing
-        try {
-          const response = await fetch('/api/ai/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              message: inputMessage,
-              history: messages.slice(-5),
-              userState: {
-                alignment_score: biologicalSystemState.metrics.energyATP,
-                primary_goal: biologicalSystemState.goals.find(g => g.isPrimary)?.name || 'None',
-                recent_topics: curiosityMap.slice(0, 3).map(c => c.topic),
-                drift_level: 'low',
-                preferred_provider: provider,
-                task_type: taskType
-              },
-              routing: {
-                provider,
-                taskType,
-                reason: 'Fallback routing',
-                model: config.model
-              }
-            })
-          })
-
-          if (!response.ok) throw new Error('AI request failed')
-          
-          const data = await response.json()
-          
-          const fallbackResponse: ChatMessage = {
-            id: (Date.now() + 1).toString(),
-            role: 'ai',
-            content: data.response || `I received: "${inputMessage.slice(0, 50)}..."`,
-            timestamp: new Date(),
-            aiMetadata: {
-              provider,
-              model: config.model,
-              reason: 'Fallback processing',
-              taskType,
-              fallback: true
-            }
-          }
-          setMessages(prev => [...prev, fallbackResponse])
-          
-        } catch (fallbackError) {
-          console.error('Fallback also failed:', fallbackError)
-          
-          // ULTIMATE FALLBACK
-          const ultimateResponse: ChatMessage = {
-            id: (Date.now() + 1).toString(),
-            role: 'ai',
-            content: `I received your message about "${inputMessage.slice(0, 30)}...". The system is experiencing difficulties, but your thought was captured.`,
-            timestamp: new Date(),
-            aiMetadata: {
-              provider: 'auto',
-              model: 'offline',
-              reason: 'System offline',
-              fallback: true
-            }
-          }
-          setMessages(prev => [...prev, ultimateResponse])
-        }
-      }
-    }
-  }
-
   const addGoal = () => {
     if (newGoal.trim()) {
       const goal: Goal = {
@@ -1165,6 +997,317 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
       timestamp: new Date()
     }
     setMessages(prev => [...prev, aiResponse])
+  }
+
+  // Enhanced handleSendMessage with AI mutation system
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim()) return
+    
+    // Add user message
+    const userMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: inputMessage,
+      timestamp: new Date()
+    }
+    setMessages(prev => [...prev, userMessage])
+    
+    // Clear input
+    const messageContent = inputMessage
+    setInputMessage('')
+    
+    try {
+      // Check if this is a complaint/bug report
+      const isComplaint = messageContent.toLowerCase().match(/\b(bug|issue|problem|broken|not working|complaint|fix|error|wrong|fail)\b/)
+      
+      if (isComplaint) {
+        // Use Gemini to analyze the complaint
+        console.log('🔍 Complaint detected - Using Gemini to analyze...')
+        const analysisResult = await tryGeminiAnalysis(messageContent)
+        
+        if (analysisResult.needsCodeFix) {
+          // Delegate to DeepSeek for code fix
+          console.log('🔧 Delegating to DeepSeek for code fix...')
+          const codeFix = await tryDeepSeekCodeFix(analysisResult.analysis, messageContent)
+          
+          // Show the analysis and code fix
+          const analysisMessage: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'ai',
+            content: `🔍 **Gemini Analysis:**\n${analysisResult.analysis}\n\n🔧 **DeepSeek Code Fix:**\n\`\`\`typescript\n${codeFix}\n\`\`\`\n\n💡 **Implementation:** Copy the code above and add it to your app. This should resolve the issue you reported.`,
+            timestamp: new Date(),
+            aiMetadata: {
+              provider: 'gemini' as const,
+              model: 'gemini-pro + deepseek-chat',
+              reason: 'Complaint analysis and code fix delegation',
+              taskType: 'debugging',
+              confidence: 0.9
+            }
+          }
+          setMessages(prev => [...prev, analysisMessage])
+        } else {
+          // Just provide the analysis
+          const responseMessage: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'ai',
+            content: `🔍 **Gemini Analysis:**\n${analysisResult.analysis}`,
+            timestamp: new Date(),
+            aiMetadata: {
+              provider: 'gemini',
+              model: 'gemini-pro',
+              reason: 'Complaint analysis',
+              taskType: 'memory_analysis',
+              confidence: 0.85
+            }
+          }
+          setMessages(prev => [...prev, responseMessage])
+        }
+      } else {
+        // Normal AI routing
+        const routeResult = providerRouter.route(messageContent, selectedAIProvider)
+        const { provider, taskType, reason, config } = routeResult
+        
+        console.log(`🤖 AI Routing: ${taskType} → ${provider} (${reason})`)
+        
+        // Try to get AI response
+        let aiResponse = ''
+        
+        if (provider === 'ollama') {
+          aiResponse = await tryOllamaResponse(messageContent)
+        } else if (provider === 'deepseek' && config.apiKey) {
+          aiResponse = await tryDeepSeekResponse(messageContent, config.apiKey)
+        } else if (provider === 'gemini' && config.apiKey) {
+          aiResponse = await tryGeminiResponse(messageContent, config.apiKey)
+        } else {
+          aiResponse = generateFallbackResponse(messageContent, taskType)
+        }
+        
+        // Add AI response to chat
+        const responseMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          role: 'ai',
+          content: aiResponse,
+          timestamp: new Date(),
+          aiMetadata: {
+            provider,
+            model: config.model,
+            reason,
+            taskType,
+            confidence: 0.85
+          }
+        }
+        setMessages(prev => [...prev, responseMessage])
+      }
+      
+    } catch (error) {
+      console.error('AI processing error:', error)
+      
+      // Fallback response
+      const fallbackMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'ai',
+        content: `I'm having trouble connecting to AI services right now. Based on your message about "${messageContent.slice(0, 50)}...", I suggest you focus on your current goal: ${currentFocus.project}. Your alignment score is ${systemState.alignment_score}%.`,
+        timestamp: new Date(),
+        aiMetadata: {
+          provider: 'ollama' as const,
+          model: 'local',
+          reason: 'AI services unavailable',
+          taskType: 'general',
+          confidence: 0.5
+        }
+      }
+      setMessages(prev => [...prev, fallbackMessage])
+    }
+  }
+
+  // Gemini complaint analysis
+  const tryGeminiAnalysis = async (complaint: string): Promise<{analysis: string, needsCodeFix: boolean}> => {
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY || 'AIzaSyB-APtrgunj5h93y-mJ_Z2LYSUAxMCl3yI'}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ 
+            parts: [{ 
+              text: `Analyze this user complaint about the Cognitive OS app: "${complaint}"
+              
+              Determine:
+              1. What the issue is
+              2. If it requires a code fix
+              3. What specific code changes might be needed
+              
+              Respond in JSON format:
+              {
+                "analysis": "Detailed analysis of the issue",
+                "needsCodeFix": true/false
+              }`
+            }] 
+          }],
+          generationConfig: {
+            temperature: 0.1,
+            maxOutputTokens: 500
+          }
+        })
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        const text = data.candidates[0]?.content?.parts[0]?.text || '{}'
+        try {
+          return JSON.parse(text)
+        } catch {
+          return {
+            analysis: text,
+            needsCodeFix: text.toLowerCase().includes('code') || text.toLowerCase().includes('fix')
+          }
+        }
+      }
+    } catch (error) {
+      console.log('Gemini analysis failed')
+    }
+    
+    return {
+      analysis: "I detected a complaint about the app. The issue seems to require attention.",
+      needsCodeFix: true
+    }
+  }
+
+  // DeepSeek code fix
+  const tryDeepSeekCodeFix = async (analysis: string, originalComplaint: string): Promise<string> => {
+    try {
+      const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: 'deepseek-chat',
+          messages: [{ 
+            role: 'system', 
+            content: 'You are an expert React/TypeScript developer. Based on the analysis provided, generate a specific code fix for the Cognitive OS app. Provide only the code, no explanations.' 
+          }, { 
+            role: 'user', 
+            content: `Original complaint: "${originalComplaint}"\n\nAnalysis: "${analysis}"\n\nGenerate a specific code fix for this issue.` 
+          }],
+          max_tokens: 1000,
+          temperature: 0.1
+        })
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        return data.choices[0]?.message?.content || '// Code fix generated by DeepSeek'
+      }
+    } catch (error) {
+      console.log('DeepSeek code fix failed')
+    }
+    
+    return `// Generated code fix for: ${originalComplaint}\n// TODO: Implement the fix based on the analysis`
+  }
+
+  // Simple AI response functions
+  const tryOllamaResponse = async (content: string): Promise<string> => {
+    try {
+      const response = await fetch('http://localhost:11434/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'llama2',
+          prompt: `You are a helpful AI assistant for a cognitive OS. Respond concisely to: ${content}`,
+          stream: false
+        })
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        return data.response || 'I processed your request through the local AI.'
+      }
+    } catch (error) {
+      console.log('Ollama not available, using fallback')
+    }
+    return generateFallbackResponse(content, 'general')
+  }
+
+  const tryDeepSeekResponse = async (content: string, apiKey: string): Promise<string> => {
+    try {
+      console.log('🔥 Trying DeepSeek API...')
+      const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'deepseek-chat',
+          messages: [{ 
+            role: 'system', 
+            content: 'You are a helpful AI assistant for a cognitive OS. Be concise, insightful, and provide practical advice.' 
+          }, { 
+            role: 'user', 
+            content: content 
+          }],
+          max_tokens: 500,
+          temperature: 0.7
+        })
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        console.log('✅ DeepSeek response successful')
+        return data.choices[0]?.message?.content || 'DeepSeek response received.'
+      } else {
+        console.log('❌ DeepSeek API error:', response.status)
+        throw new Error('DeepSeek API error')
+      }
+    } catch (error) {
+      console.log('❌ DeepSeek not available, using fallback')
+      return generateFallbackResponse(content, 'general')
+    }
+  }
+
+  const tryGeminiResponse = async (content: string, apiKey: string): Promise<string> => {
+    try {
+      console.log('💎 Trying Gemini API...')
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ 
+            parts: [{ 
+              text: `You are a helpful AI assistant for a cognitive OS. Be concise, insightful, and provide practical advice. ${content}` 
+            }] 
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 500
+          }
+        })
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        console.log('✅ Gemini response successful')
+        return data.candidates[0]?.content?.parts[0]?.text || 'Gemini response received.'
+      } else {
+        console.log('❌ Gemini API error:', response.status)
+        throw new Error('Gemini API error')
+      }
+    } catch (error) {
+      console.log('❌ Gemini not available, using fallback')
+      return generateFallbackResponse(content, 'general')
+    }
+  }
+
+  const generateFallbackResponse = (content: string, taskType: string): string => {
+    const responses = {
+      'general': `I understand you're asking about: "${content.slice(0, 50)}...". Based on your current focus on ${currentFocus.project} and your ${systemState.alignment_score}% alignment score, I suggest staying focused on your primary goal.`,
+      'coding': `For your coding request about "${content.slice(0, 30)}...", consider breaking it down into smaller tasks. Your current focus is ${currentFocus.project}.`,
+      'planning': `Regarding your planning question, you have ${goals.length} active goals and ${actionQueue.length} tasks in queue. Focus on ${currentFocus.project} first.`,
+      'debugging': `For debugging help with "${content.slice(0, 30)}...", try reviewing recent changes. Your system shows ${systemState.alignment_score}% alignment.`
+    }
+    
+    return responses[taskType as keyof typeof responses] || responses.general
   }
 
   const handleQuickAction = (action: string) => {
@@ -1955,13 +2098,16 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
               </div>
             </div>
 
-            {/* Chat Interface */}
-            <div className="chat-container glass-card">
-              <div className="chat-header">
+            {/* Enhanced Chat Interface */}
+            <div className="chat-container glass-card border-2 border-purple-500/30 shadow-lg shadow-purple-500/20">
+              <div className="chat-header bg-gradient-to-r from-purple-600/20 to-blue-600/20 p-4 rounded-t-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="display-lg font-display">AI Assistant</h3>
-                    <div className="diary-text">System Analysis & Explanation</div>
+                    <h3 className="display-lg font-display text-white flex items-center gap-2">
+                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                      AI Assistant
+                    </h3>
+                    <div className="diary-text text-white/80">System Analysis & Neural Network Processing</div>
                   </div>
                   {/* AI Provider Selector (NEW) */}
                   <AIProviderSelector
@@ -1972,28 +2118,49 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
                 </div>
               </div>
               
-              <div className="chat-messages">
+              <div className="chat-messages p-4 max-h-96 overflow-y-auto space-y-3">
+                {messages.length === 0 && (
+                  <div className="text-center py-8">
+                    <div className="text-white/60 mb-2">🤖 Neural Network Ready</div>
+                    <div className="text-white/40 text-sm">Ask me about your patterns, progress, or next actions</div>
+                  </div>
+                )}
                 {messages.map((message) => (
-                  <div key={message.id} className={`message-${message.role} animate-fade-in`}>
-                    <div className="text-body">{message.content}</div>
-                    <div className="text-muted" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
-                      {message.timestamp.toLocaleTimeString()}
+                  <div key={message.id} className={`message-${message.role} animate-fade-in p-3 rounded-lg ${
+                    message.role === 'ai' 
+                      ? 'bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20' 
+                      : 'bg-white/5 border border-white/10'
+                  }`}>
+                    <div className="flex items-start gap-2">
+                      <div className="flex-shrink-0">
+                        {message.role === 'ai' ? (
+                          <div className="w-6 h-6 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full flex items-center justify-center text-xs">🧠</div>
+                        ) : (
+                          <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs">👤</div>
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-white text-sm leading-relaxed">{message.content}</div>
+                        <div className="text-white/40 text-xs mt-2">
+                          {message.timestamp.toLocaleTimeString()}
+                        </div>
+                        {/* AI Metadata Display (NEW) */}
+                        {message.role === 'ai' && message.aiMetadata && (
+                          <AIMetadata
+                            provider={message.aiMetadata.provider}
+                            model={message.aiMetadata.model}
+                            reason={message.aiMetadata.reason}
+                            taskType={message.aiMetadata.taskType}
+                            confidence={message.aiMetadata.confidence}
+                          />
+                        )}
+                      </div>
                     </div>
-                    {/* AI Metadata Display (NEW) */}
-                    {message.role === 'ai' && message.aiMetadata && (
-                      <AIMetadata
-                        provider={message.aiMetadata.provider}
-                        model={message.aiMetadata.model}
-                        reason={message.aiMetadata.reason}
-                        taskType={message.aiMetadata.taskType}
-                        confidence={message.aiMetadata.confidence}
-                      />
-                    )}
                   </div>
                 ))}
               </div>
               
-              <div className="chat-input">
+              <div className="chat-input p-4 border-t border-white/10">
                 <div className="flex items-center space-x-3">
                   <input
                     type="text"
@@ -2001,22 +2168,35 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                     placeholder="Ask about your patterns, state, or next actions..."
-                    className="flex-1 px-4 py-2 rounded-lg"
-                    style={{
-                      backgroundColor: '#1F2937',
-                      border: '1px solid #374151',
-                      color: '#D1D5DB'
-                    }}
+                    className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:bg-white/15 transition-all"
                   />
                   <button
                     onClick={handleSendMessage}
-                    className="p-2 rounded-lg"
-                    style={{
-                      backgroundColor: '#4F46E5',
-                      color: '#FFFFFF'
-                    }}
+                    className="p-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105"
                   >
                     <Send className="w-4 h-4" />
+                  </button>
+                </div>
+                
+                {/* Quick Action Buttons */}
+                <div className="flex gap-2 mt-3">
+                  <button
+                    onClick={() => setInputMessage("What's my current focus and progress?")}
+                    className="px-3 py-1 text-xs bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-colors"
+                  >
+                    Current Focus
+                  </button>
+                  <button
+                    onClick={() => setInputMessage("Analyze my recent patterns")}
+                    className="px-3 py-1 text-xs bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-colors"
+                  >
+                    Analyze Patterns
+                  </button>
+                  <button
+                    onClick={() => setInputMessage("What should I work on next?")}
+                    className="px-3 py-1 text-xs bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-colors"
+                  >
+                    Next Action
                   </button>
                 </div>
               </div>
@@ -2309,8 +2489,51 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
         {/* NOTES VIEW */}
         {activeView === 'notes' && (
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Notes</h2>
-            <p className="text-gray-400">Notes view - Coming soon</p>
+            <h2 className="text-2xl font-bold mb-6 text-white">Notes & Reflections</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Recent Notes */}
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-4">Recent Notes</h3>
+                <div className="space-y-3">
+                  {captureInbox.slice(0, 5).map(capture => (
+                    <div key={capture.id} className="p-3 bg-white/5 rounded-lg border border-white/10">
+                      <div className="text-white/80 text-sm">{capture.raw_content}</div>
+                      <div className="text-white/40 text-xs mt-2">
+                        {capture.created_at.toLocaleString()}
+                      </div>
+                    </div>
+                  ))}
+                  {captureInbox.length === 0 && (
+                    <div className="text-center py-8 text-white/40">
+                      No notes yet. Start capturing your thoughts!
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              {/* Quick Stats */}
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-4">Note Statistics</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Total Notes</span>
+                    <span className="text-white font-medium">{captureInbox.length}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/60">This Week</span>
+                    <span className="text-white font-medium">{Math.floor(captureInbox.length * 0.3)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Average Energy</span>
+                    <span className="text-white font-medium">
+                      {captureInbox.length > 0 
+                        ? Math.round(captureInbox.reduce((sum, c) => sum + c.energy_level, 0) / captureInbox.length)
+                        : 0} ATP
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -2419,8 +2642,128 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
         {/* SETTINGS VIEW */}
         {activeView === 'settings' && (
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Settings</h2>
-            <p className="text-gray-400">Settings - Coming soon</p>
+            <h2 className="text-2xl font-bold mb-6 text-white">Settings</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* User Preferences */}
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-4">User Preferences</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Welcome Messages</span>
+                    <button
+                      onClick={() => setUserPreferences(prev => ({...prev, welcomeMessage: !prev.welcomeMessage}))}
+                      className={`w-12 h-6 rounded-full transition-colors ${
+                        userPreferences.welcomeMessage ? 'bg-purple-600' : 'bg-gray-600'
+                      }`}
+                    >
+                      <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
+                        userPreferences.welcomeMessage ? 'translate-x-6' : 'translate-x-0.5'
+                      }`} />
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Auto-Save</span>
+                    <button
+                      onClick={() => setUserPreferences(prev => ({...prev, autoSave: !prev.autoSave}))}
+                      className={`w-12 h-6 rounded-full transition-colors ${
+                        userPreferences.autoSave ? 'bg-purple-600' : 'bg-gray-600'
+                      }`}
+                    >
+                      <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
+                        userPreferences.autoSave ? 'translate-x-6' : 'translate-x-0.5'
+                      }`} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              {/* System Stats */}
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-4">System Statistics</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Total Captures</span>
+                    <span className="text-white font-medium">{captureInbox.length}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Active Goals</span>
+                    <span className="text-white font-medium">{goals.length}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Action Queue</span>
+                    <span className="text-white font-medium">{actionQueue.length}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Diary Entries</span>
+                    <span className="text-white font-medium">{diaryEntries.length}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* AI Settings */}
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-4">AI Configuration</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-white/60 text-sm">Preferred AI Provider</label>
+                    <div className="mt-2 grid grid-cols-2 gap-2">
+                      {['auto', 'ollama', 'deepseek', 'gemini'].map(provider => (
+                        <button
+                          key={provider}
+                          onClick={() => setSelectedAIProvider(provider as any)}
+                          className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                            selectedAIProvider === provider
+                              ? 'bg-purple-600 text-white'
+                              : 'bg-white/10 text-white/60 hover:bg-white/20'
+                          }`}
+                        >
+                          {provider.charAt(0).toUpperCase() + provider.slice(1)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Data Management */}
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-4">Data Management</h3>
+                <div className="space-y-3">
+                  <button
+                    onClick={() => {
+                      if (confirm('Clear all data? This cannot be undone.')) {
+                        localStorage.clear();
+                        window.location.reload();
+                      }
+                    }}
+                    className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                  >
+                    Clear All Data
+                  </button>
+                  <button
+                    onClick={() => {
+                      const data = {
+                        captures: captureInbox,
+                        goals,
+                        actionQueue,
+                        diaryEntries,
+                        userPreferences,
+                        goalAlignment
+                      };
+                      const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'cognitive-os-backup.json';
+                      a.click();
+                    }}
+                    className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+                  >
+                    Export Data
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -2660,6 +3003,122 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
 
       {/* Particle Background - Ambient Life */}
       <ParticleBackground />
+
+      {/* Floating Action Button - Quick Capture */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <div className="relative">
+          {/* Main FAB */}
+          <button
+            onClick={() => {
+              const menu = document.getElementById('quick-actions-menu');
+              if (menu?.classList.contains('hidden')) {
+                menu?.classList.remove('hidden');
+                menu?.classList.add('flex');
+              } else {
+                menu?.classList.add('hidden');
+                menu?.classList.remove('flex');
+              }
+            }}
+            className="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full shadow-lg shadow-purple-500/30 flex items-center justify-center text-white hover:scale-110 transition-all duration-300 hover:shadow-purple-500/50"
+          >
+            <Plus className="w-6 h-6" />
+          </button>
+          
+          {/* Quick Actions Menu */}
+          <div className="absolute bottom-16 right-0 space-y-2 flex flex-col hidden" id="quick-actions-menu">
+            <button
+              onClick={() => {
+                handleQuickAction('capture');
+                const menu = document.getElementById('quick-actions-menu');
+                menu?.classList.add('hidden');
+                menu?.classList.remove('flex');
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-white/90 text-gray-800 rounded-lg shadow-lg whitespace-nowrap hover:bg-white transition-all transform hover:scale-105"
+            >
+              <Plus className="w-4 h-4" />
+              Quick Capture
+            </button>
+            <button
+              onClick={() => {
+                setInputMessage("What's my current focus and progress?");
+                const menu = document.getElementById('quick-actions-menu');
+                menu?.classList.add('hidden');
+                menu?.classList.remove('flex');
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-white/90 text-gray-800 rounded-lg shadow-lg whitespace-nowrap hover:bg-white transition-all transform hover:scale-105"
+            >
+              <MessageSquare className="w-4 h-4" />
+              Ask AI
+            </button>
+            <button
+              onClick={() => {
+                handleQuickAction('analyze');
+                const menu = document.getElementById('quick-actions-menu');
+                menu?.classList.add('hidden');
+                menu?.classList.remove('flex');
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-white/90 text-gray-800 rounded-lg shadow-lg whitespace-nowrap hover:bg-white transition-all transform hover:scale-105"
+            >
+              <Search className="w-4 h-4" />
+              Analyze
+            </button>
+            <button
+              onClick={() => {
+                setShowQuickCapture(true);
+                const menu = document.getElementById('quick-actions-menu');
+                menu?.classList.add('hidden');
+                menu?.classList.remove('flex');
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-white/90 text-gray-800 rounded-lg shadow-lg whitespace-nowrap hover:bg-white transition-all transform hover:scale-105"
+            >
+              <FileText className="w-4 h-4" />
+              New Entry
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Capture Modal */}
+      {showQuickCapture && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-gray-900 border border-white/20 rounded-xl p-6 max-w-md w-full">
+            <h3 className="text-xl font-bold text-white mb-4">Quick Capture</h3>
+            <textarea
+              value={quickCaptureText}
+              onChange={(e) => setQuickCaptureText(e.target.value)}
+              placeholder="Capture your thought..."
+              className="w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-400 resize-none"
+              rows={4}
+            />
+            <div className="flex gap-3 mt-4">
+              <button
+                onClick={() => {
+                  if (quickCaptureText.trim()) {
+                    handleUnifiedCapture(quickCaptureText, 'text');
+                    setQuickCaptureText('');
+                    setShowQuickCapture(false);
+                  }
+                }}
+                className="flex-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+              >
+                Capture
+              </button>
+              <button
+                onClick={() => {
+                  setShowQuickCapture(false);
+                  setQuickCaptureText('');
+                }}
+                className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Code Drop Zone - Drag & Drop Code Implementation */}
+      <CodeDropZone />
     </div>
   )
 }

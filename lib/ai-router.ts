@@ -16,19 +16,19 @@ export type TaskType =
   | 'drift_explanation'
   | 'general'
 
-// Routing table - deterministic mapping
+// Routing table - deterministic mapping with better distribution
 const ROUTING_TABLE: Record<TaskType, AIProvider> = {
-  summary: 'ollama',
-  tagging: 'ollama',
-  drift_explanation: 'ollama',
-  coding: 'deepseek',
-  debugging: 'deepseek',
-  memory_analysis: 'gemini',
-  external_research: 'grok',
-  market_context: 'grok',
-  planning: 'openai',
-  architecture: 'openai',
-  general: 'ollama' // Default fallback
+  summary: 'gemini',          // Gemini for summaries
+  tagging: 'gemini',          // Gemini for categorization
+  drift_explanation: 'gemini', // Gemini for analysis
+  coding: 'deepseek',         // DeepSeek for coding
+  debugging: 'deepseek',     // DeepSeek for debugging
+  memory_analysis: 'gemini', // Gemini for memory tasks
+  external_research: 'grok',  // Grok for research
+  market_context: 'grok',     // Grok for market data
+  planning: 'gemini',         // Gemini for planning (changed from OpenAI)
+  architecture: 'deepseek',   // DeepSeek for architecture
+  general: 'gemini'           // Gemini for general (changed from Ollama)
 }
 
 // Provider configurations
@@ -185,7 +185,7 @@ export class ProviderRouter {
       baseUrl: 'https://api.deepseek.com/v1',
       apiKey: process.env.DEEPSEEK_API_KEY,
       model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
-      enabled: !!process.env.DEEPSEEK_API_KEY
+      enabled: !!process.env.DEEPSEEK_API_KEY // Will be true if API key is set
     })
     
     // GEMINI - Long context specialist
@@ -194,7 +194,7 @@ export class ProviderRouter {
       baseUrl: 'https://generativelanguage.googleapis.com/v1',
       apiKey: process.env.GEMINI_API_KEY || 'AIzaSyB-APtrgunj5h93y-mJ_Z2LYSUAxMCl3yI',
       model: process.env.GEMINI_MODEL || 'gemini-pro',
-      enabled: true // Has default key
+      enabled: true // Always enabled with fallback key
     })
     
     // GROK - External research
