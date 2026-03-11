@@ -8,10 +8,14 @@ import { GamificationPanel, AlignmentIndicator, MotivationalBanner } from '@/com
 import { UnifiedCapture } from '@/components/UnifiedCapture'
 import { ParticleBackground } from '@/components/ParticleBackground'
 import { AICompanion } from '@/components/AICompanion'
+import LivingAICompanion from '@/components/LivingAICompanion'
+import EvolutionEngine from '@/components/EvolutionEngine'
+import ConversationalAI from '@/components/ConversationalAI'
 import { MiniMap } from '@/components/MiniMap'
 import { MorningBriefing } from '@/components/MorningBriefing'
 import { TimePerception } from '@/components/TimePerception'
 import { AIProviderSelector, AIMetadata } from '@/components/AIProviderUI'
+import { AutonomousControlPanel } from '@/components/AutonomousControlPanel'
 import type { AIProvider, TaskType } from '@/lib/ai-router'
 import { providerRouter } from '@/lib/ai-router'
 import { biologicalOrchestrator } from '@/lib/biological-coherence'
@@ -55,6 +59,11 @@ interface ChatMessage {
     taskType?: TaskType
     confidence?: number
     fallback?: boolean
+    biological?: {
+      coherence: number
+      energyATP: number
+      health: number
+    }
   }
 }
 
@@ -136,7 +145,7 @@ export default function Dashboard() {
   })
 
   // Navigation state - fixes broken <a href> links
-  const [activeView, setActiveView] = useState<'dashboard' | 'capture' | 'idea_buckets' | 'action_queue' | 'projects' | 'face_engine' | 'future_self' | 'garden' | 'notes' | 'chat' | 'settings'>('dashboard')
+  const [activeView, setActiveView] = useState<'dashboard' | 'capture' | 'idea_buckets' | 'action_queue' | 'projects' | 'face_engine' | 'future_self' | 'garden' | 'notes' | 'chat' | 'settings' | 'autonomous'>('dashboard')
 
   // Capture System State
   const [captureInbox, setCaptureInbox] = useState<CaptureItem[]>([
@@ -800,14 +809,14 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
       console.log(`🤖 AI Routing: ${taskType} → ${provider} (${reason})`)
       
       // BUILD SYSTEM STATE for biological processing
-      const systemState = {
-        captures: captures.map(c => ({
+      const biologicalSystemState = {
+        captures: captureInbox.map(c => ({
           id: c.id,
           content: c.raw_content,
           timestamp: c.created_at,
           source: c.source_type,
-          processed: c.processed,
-          energy: c.energy
+          processed: c.processed_status === 'routed',
+          energy: c.energy_level
         })),
         goals: goals.map(g => ({
           id: g.id,
@@ -822,7 +831,7 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
           status: currentFocus?.status || 'active'
         },
         metrics: {
-          totalCaptures: captures.length,
+          totalCaptures: captureInbox.length,
           activeProjects: goals.filter(g => !g.isPrimary).length,
           focusTimeToday: 120, // minutes
           energyATP: systemState.alignment_score || 72,
@@ -837,7 +846,7 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
           inputMessage,
           provider,
           taskType,
-          systemState
+          biologicalSystemState
         )
         
         // Create AI response with biological metadata
@@ -870,7 +879,7 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
               content: `🧬 Biological Recommendations:\n${biologicalResult.recommendations.map(r => `• ${r}`).join('\n')}`,
               timestamp: new Date(),
               aiMetadata: {
-                provider: 'biological',
+                provider: 'auto',
                 model: 'organism',
                 reason: 'System health recommendations',
                 confidence: 0.95
@@ -892,8 +901,8 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
               message: inputMessage,
               history: messages.slice(-5),
               userState: {
-                alignment_score: systemState.metrics.energyATP,
-                primary_goal: systemState.goals.find(g => g.isPrimary)?.name || 'None',
+                alignment_score: biologicalSystemState.metrics.energyATP,
+                primary_goal: biologicalSystemState.goals.find(g => g.isPrimary)?.name || 'None',
                 recent_topics: curiosityMap.slice(0, 3).map(c => c.topic),
                 drift_level: 'low',
                 preferred_provider: provider,
@@ -937,7 +946,7 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
             content: `I received your message about "${inputMessage.slice(0, 30)}...". The system is experiencing difficulties, but your thought was captured.`,
             timestamp: new Date(),
             aiMetadata: {
-              provider: 'none',
+              provider: 'auto',
               model: 'offline',
               reason: 'System offline',
               fallback: true
@@ -1104,17 +1113,16 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
       <div className="background-layer"></div>
       
       {/* Sidebar Navigation */}
-      <div className="sidebar-nav">
+      <div className="sidebar-nav glass-card">
         <div className="flex items-center space-x-3 mb-8">
-          <Brain className="w-8 h-8" style={{ color: '#4F46E5' }} />
-          <span style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '1.125rem' }}>Cognitive OS</span>
+          <Brain className="w-8 h-8 neon-glow" style={{ color: '#4F46E5' }} />
+          <span className="display-md font-display text-white">Cognitive OS</span>
         </div>
         
         <nav className="space-y-2">
           <button 
             onClick={() => setActiveView('dashboard')}
-            className={activeView === 'dashboard' ? 'premium-nav-item-active' : 'premium-nav-item'}
-            style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center' }}
+            className={activeView === 'dashboard' ? 'nav-item-active' : 'nav-item'}
           >
             <Target className="w-4 h-4 mr-3" />
             Dashboard
@@ -1207,6 +1215,14 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
             Chat
           </button>
           <button 
+            onClick={() => setActiveView('autonomous')}
+            className={activeView === 'autonomous' ? 'premium-nav-item-active' : 'premium-nav-item'}
+            style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center' }}
+          >
+            <Brain className="w-4 h-4 mr-3" />
+            Autonomous
+          </button>
+          <button 
             onClick={() => setActiveView('settings')}
             className={activeView === 'settings' ? 'premium-nav-item-active' : 'premium-nav-item'}
             style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center' }}
@@ -1253,10 +1269,10 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
         {activeView === 'dashboard' && (
           <>
         {/* Curiosity Heatmap - Living Organism Pattern Recognition */}
-        <div className="curiosity-heatmap">
+        <div className="curiosity-heatmap glass-card gradient-overlay">
           <div className="heatmap-header">
-            <Zap className="w-5 h-5 text-amber-400" />
-            <span className="text-amber-200 font-semibold">Curiosity Signals</span>
+            <Zap className="w-5 h-5 text-amber-400 neon-glow" />
+            <span className="font-alternate ui-text text-amber-200">Curiosity Signals</span>
             <span className="text-xs text-gray-500 ml-auto">{curiosityMap.length} active patterns</span>
           </div>
           <div className="heatmap-bars">
@@ -1303,10 +1319,10 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
         </div>
 
         {/* Homeostatic System Vitals - Self-Regulation */}
-        <div className="system-vitals">
+        <div className="system-vitals glass-card">
           <div className="vitals-header">
-            <Brain className="w-5 h-5 text-emerald-400" />
-            <span className="text-emerald-200 font-semibold">System Vitals</span>
+            <Brain className="w-5 h-5 text-emerald-400 neon-glow" />
+            <span className="font-alternate ui-text text-emerald-200">System Vitals</span>
             <span className="text-xs text-gray-500 ml-auto">
               {captureInbox.length > 10 ? '⚠️ Digestion needed' : captureInbox.filter(c => c.energy_level > 70).length > 3 ? '🔥 High energy state' : '✅ Homeostasis'}
             </span>
@@ -1399,21 +1415,15 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
                 </div>
 
                 {/* Drift Detection */}
-                <div className="ai-card" style={{ borderLeft: '4px solid #EF4444' }}>
+                <div className="ai-card ai-card-danger">
                   <h4 className="heading-lg flex items-center">
-                    <AlertTriangle className="w-5 h-5 mr-2" style={{ color: '#EF4444' }} />
+                    <AlertTriangle className="w-5 h-5 mr-2 text-red-400" />
                     Drift Detection
                   </h4>
                   <div className="text-body">Drift Level: {systemState.drift_level}</div>
                   <div className="text-body">Alignment: {systemState.alignment_score}%</div>
                   <button 
-                    className="mt-4 px-4 py-2 rounded-lg text-sm font-medium" 
-                    style={{ 
-                      backgroundColor: systemState.alignment_score >= 95 ? '#10B981' : '#EF4444', 
-                      color: '#FFFFFF',
-                      cursor: systemState.alignment_score >= 95 ? 'not-allowed' : 'pointer',
-                      opacity: systemState.alignment_score >= 95 ? 0.7 : 1
-                    }}
+                    className={`mt-4 px-4 py-2 rounded-lg text-sm font-medium ${systemState.alignment_score >= 95 ? 'btn-success' : 'btn-danger'}`}
                     onClick={() => {
                       if (systemState.alignment_score < 95) {
                         handleDriftAction('reconnect')
@@ -1585,25 +1595,27 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
                       <div className="flex gap-2 mt-2 pt-2 border-t border-gray-700">
                         <button
                           onClick={() => routeCapture(item.id, 'project')}
-                          className="px-2 py-1 text-xs rounded bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+                          className="px-2 py-1 text-xs rounded liquid-button text-white"
                         >
                           Project
                         </button>
                         <button
                           onClick={() => routeCapture(item.id, 'idea_bucket')}
-                          className="px-2 py-1 text-xs rounded bg-amber-600 hover:bg-amber-700 text-white transition-colors"
+                          className="px-2 py-1 text-xs rounded liquid-button text-white"
+                          style={{ background: 'linear-gradient(135deg, #D97706 0%, #B45309 100%)' }}
                         >
                           Idea
                         </button>
                         <button
                           onClick={() => routeCapture(item.id, 'action_queue')}
-                          className="px-2 py-1 text-xs rounded bg-green-600 hover:bg-green-700 text-white transition-colors"
+                          className="px-2 py-1 text-xs rounded liquid-button text-white"
+                          style={{ background: 'linear-gradient(135deg, #059669 0%, #047857 100%)' }}
                         >
                           Action
                         </button>
                         <button
                           onClick={() => routeCapture(item.id, 'archived')}
-                          className="px-2 py-1 text-xs rounded bg-gray-600 hover:bg-gray-700 text-white transition-colors"
+                          className="px-2 py-1 text-xs rounded glass-morphism text-gray-300"
                         >
                           Archive
                         </button>
@@ -1615,12 +1627,12 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
             </div>
 
             {/* Chat Interface */}
-            <div className="chat-container">
+            <div className="chat-container glass-card">
               <div className="chat-header">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="heading-xl">AI Assistant</h3>
-                    <div className="text-muted">System Analysis & Explanation</div>
+                    <h3 className="display-lg font-display">AI Assistant</h3>
+                    <div className="diary-text">System Analysis & Explanation</div>
                   </div>
                   {/* AI Provider Selector (NEW) */}
                   <AIProviderSelector
@@ -1944,8 +1956,86 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
         {/* CHAT VIEW */}
         {activeView === 'chat' && (
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Chat</h2>
-            <p className="text-gray-400">Chat interface - Coming soon</p>
+            <h2 className="display-xl font-display mb-6">Personal Diary</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Diary Entry Section */}
+              <div className="paper-texture p-8 rounded-xl">
+                <h3 className="diary-title">Today's Reflections</h3>
+                <div className="diary-text space-y-4">
+                  <p className="quote-text">
+                    "The mind is not a vessel to be filled, but a fire to be kindled."
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="ui-text">Mood:</span>
+                      <div className="flex space-x-1">
+                        <span className="text-2xl">🧠</span>
+                        <span className="text-2xl">⚡</span>
+                        <span className="text-2xl">🎯</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="ui-text">Energy:</span>
+                      <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-green-500 to-amber-500" style={{ width: '75%' }}></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="ui-text">Focus:</span>
+                      <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500" style={{ width: '60%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="space-y-4">
+                <div className="glass-card p-6">
+                  <h3 className="font-alternate ui-text mb-4">Quick Actions</h3>
+                  <div className="space-y-3">
+                    <button className="w-full liquid-button text-white py-3">
+                      <span className="flex items-center justify-center space-x-2">
+                        <Zap className="w-4 h-4" />
+                        <span>Capture Thought</span>
+                      </span>
+                    </button>
+                    <button className="w-full glass-morphism text-gray-300 py-3">
+                      <span className="flex items-center justify-center space-x-2">
+                        <Brain className="w-4 h-4" />
+                        <span>Brain Dump</span>
+                      </span>
+                    </button>
+                    <button className="w-full holographic text-white py-3">
+                      <span className="flex items-center justify-center space-x-2">
+                        <Target className="w-4 h-4" />
+                        <span>Set Intention</span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Recent Insights */}
+                <div className="glass-card p-6">
+                  <h3 className="font-alternate ui-text mb-4">Recent Insights</h3>
+                  <div className="space-y-3">
+                    <div className="border-l-2 border-primary pl-4">
+                      <p className="diary-text text-sm">Your curiosity patterns show increased interest in systems thinking</p>
+                      <span className="text-xs text-gray-500">2 hours ago</span>
+                    </div>
+                    <div className="border-l-2 border-amber-500 pl-4">
+                      <p className="diary-text text-sm">Energy levels peaked during morning creative sessions</p>
+                      <span className="text-xs text-gray-500">5 hours ago</span>
+                    </div>
+                    <div className="border-l-2 border-green-500 pl-4">
+                      <p className="diary-text text-sm">Goal alignment improved by 15% this week</p>
+                      <span className="text-xs text-gray-500">1 day ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -1970,6 +2060,13 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-4">Settings</h2>
             <p className="text-gray-400">Settings - Coming soon</p>
+          </div>
+        )}
+
+        {/* AUTONOMOUS AGENT VIEW */}
+        {activeView === 'autonomous' && (
+          <div className="p-6">
+            <AutonomousControlPanel />
           </div>
         )}
 
@@ -2171,6 +2268,15 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
 
         {/* AI Companion - Floating Assistant */}
         <AICompanion />
+        
+        {/* Living AI Companion - Tiny Responsive AI */}
+        <LivingAICompanion />
+        
+        {/* Conversational AI - Voice & Text Interaction */}
+        <ConversationalAI />
+        
+        {/* Evolution Engine - Self-Improving System */}
+        <EvolutionEngine />
 
         {/* Mini Map - Only show on dashboard */}
         {activeView === 'dashboard' && (
