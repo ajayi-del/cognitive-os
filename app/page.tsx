@@ -9,6 +9,7 @@ import { UnifiedCapture } from '@/components/UnifiedCapture'
 import { ParticleBackground } from '@/components/ParticleBackground'
 import { AICompanion } from '@/components/AICompanion'
 import { MiniMap } from '@/components/MiniMap'
+import { MorningBriefing } from '@/components/MorningBriefing'
 import { Brain, Target, Zap, MessageSquare, FileText, Briefcase, TrendingUp, ArrowRight, AlertTriangle, CheckCircle, Send, Plus, Search, Settings, X, RefreshCw, Compass, Archive, Link, Mic, Upload, Camera, Save, Inbox, Tag, Filter, ChevronRight, Layout, Clock, Play, Flame, Flower2 } from 'lucide-react'
 
 interface DashboardStats {
@@ -1057,6 +1058,9 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
 
       {/* Main Content Area - Unified Layout */}
       <div className="main-content">
+        {/* Morning Briefing - AI Notifications */}
+        <MorningBriefing />
+
         {/* Motivational Banner - Visual Feedback */}
         <MotivationalBanner 
           streak={5} 

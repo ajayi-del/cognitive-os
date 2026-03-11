@@ -33,22 +33,26 @@ export function ParticleBackground() {
         },
         modes: {
           grab: {
-            distance: 140,
+            distance: 200,
             links: {
-              opacity: 0.5,
+              opacity: 0.8,
+              color: '#ffffff',
+            },
+            line_linked: {
+              opacity: 0.8,
             },
           },
         },
       },
       particles: {
         color: {
-          value: ['#8b5cf6', '#6366f1', '#a78bfa', '#818cf8'],
+          value: ['#ffffff', '#a78bfa', '#c4b5fd', '#e9d5ff'],
         },
         links: {
-          color: '#8b5cf6',
+          color: '#ffffff',
           distance: 150,
           enable: true,
-          opacity: 0.2,
+          opacity: 0.15,
           width: 1,
         },
         move: {
@@ -58,22 +62,27 @@ export function ParticleBackground() {
             default: 'bounce' as const,
           },
           random: true,
-          speed: 0.5,
+          speed: 0.8,
           straight: false,
+          attract: {
+            enable: true,
+            rotateX: 600,
+            rotateY: 1200,
+          },
         },
         number: {
           density: {
             enable: true,
-            area: 800,
+            area: 1000,
           },
-          value: 60,
+          value: 80,
         },
         opacity: {
-          value: 0.4,
+          value: { min: 0.3, max: 0.8 },
           random: true,
           anim: {
             enable: true,
-            speed: 0.5,
+            speed: 1,
             opacity_min: 0.1,
             sync: false,
           },
