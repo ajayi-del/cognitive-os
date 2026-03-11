@@ -10,6 +10,11 @@ import { ParticleBackground } from '@/components/ParticleBackground'
 import { AICompanion } from '@/components/AICompanion'
 import { MiniMap } from '@/components/MiniMap'
 import { MorningBriefing } from '@/components/MorningBriefing'
+import { TimePerception } from '@/components/TimePerception'
+import { AIProviderSelector, AIMetadata } from '@/components/AIProviderUI'
+import type { AIProvider, TaskType } from '@/lib/ai-router'
+import { providerRouter } from '@/lib/ai-router'
+import { biologicalOrchestrator } from '@/lib/biological-coherence'
 import { Brain, Target, Zap, MessageSquare, FileText, Briefcase, TrendingUp, ArrowRight, AlertTriangle, CheckCircle, Send, Plus, Search, Settings, X, RefreshCw, Compass, Archive, Link, Mic, Upload, Camera, Save, Inbox, Tag, Filter, ChevronRight, Layout, Clock, Play, Flame, Flower2 } from 'lucide-react'
 
 interface DashboardStats {
@@ -42,6 +47,15 @@ interface ChatMessage {
   role: 'user' | 'ai'
   content: string
   timestamp: Date
+  // AI Routing Metadata (NEW)
+  aiMetadata?: {
+    provider: AIProvider
+    model: string
+    reason: string
+    taskType?: TaskType
+    confidence?: number
+    fallback?: boolean
+  }
 }
 
 interface Goal {
@@ -383,6 +397,10 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
   ])
   
   const [inputMessage, setInputMessage] = useState('')
+  
+  // AI Provider Selection State (NEW)
+  const [selectedAIProvider, setSelectedAIProvider] = useState<AIProvider>('auto')
+  const [availableProviders] = useState<AIProvider[]>(['auto', 'ollama', 'gemini'])
 
   // Goals State
   const [goals, setGoals] = useState<Goal[]>([
@@ -775,59 +793,158 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
       setMessages([...messages, newMessage])
       setInputMessage('')
       
-      // Call BAZINGA AI for real response
+      // AI ROUTING: Determine provider and task type
+      const routeResult = providerRouter.route(inputMessage, selectedAIProvider)
+      const { provider, taskType, reason, config } = routeResult
+      
+      console.log(`🤖 AI Routing: ${taskType} → ${provider} (${reason})`)
+      
+      // BUILD SYSTEM STATE for biological processing
+      const systemState = {
+        captures: captures.map(c => ({
+          id: c.id,
+          content: c.raw_content,
+          timestamp: c.created_at,
+          source: c.source_type,
+          processed: c.processed,
+          energy: c.energy
+        })),
+        goals: goals.map(g => ({
+          id: g.id,
+          name: g.name,
+          isPrimary: g.isPrimary,
+          progress: g.isPrimary ? 75 : 50
+        })),
+        focus: {
+          project: currentFocus?.project || 'None',
+          nextAction: currentFocus?.nextAction || 'None',
+          momentum: currentFocus?.momentum || 50,
+          status: currentFocus?.status || 'active'
+        },
+        metrics: {
+          totalCaptures: captures.length,
+          activeProjects: goals.filter(g => !g.isPrimary).length,
+          focusTimeToday: 120, // minutes
+          energyATP: systemState.alignment_score || 72,
+          curiositySignals: curiosityMap.length
+        },
+        lastUpdated: new Date()
+      }
+      
+      // BIOLOGICAL PROCESSING: Router → Specialist → Tools → State
       try {
-        const response = await fetch('/api/ai/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: inputMessage,
-            history: messages.slice(-5), // Last 5 messages for context
-            userState: {
-              alignment_score: systemState.alignment_score,
-              primary_goal: systemState.primary_goal,
-              recent_topics: systemState.recent_topics,
-              drift_level: systemState.drift_level
-            }
-          })
-        })
-
-        if (!response.ok) throw new Error('AI request failed')
+        const biologicalResult = await biologicalOrchestrator.processBiologically(
+          inputMessage,
+          provider,
+          taskType,
+          systemState
+        )
         
-        const data = await response.json()
-        
+        // Create AI response with biological metadata
         const aiResponse: ChatMessage = {
           id: (Date.now() + 1).toString(),
           role: 'ai',
-          content: data.response || `I'm analyzing your message about "${inputMessage.slice(0, 30)}...". The AI service is processing your cognitive patterns.`,
-          timestamp: new Date()
+          content: biologicalResult.response,
+          timestamp: new Date(),
+          aiMetadata: {
+            provider,
+            model: config.model,
+            reason,
+            taskType,
+            confidence: 0.92,
+            biological: {
+              coherence: biologicalResult.biologicalContext.coherence,
+              energyATP: biologicalResult.biologicalContext.energyATP,
+              health: biologicalResult.biologicalContext.organs.reduce((sum, o) => sum + o.health, 0) / biologicalResult.biologicalContext.organs.length
+            }
+          }
         }
         setMessages(prev => [...prev, aiResponse])
         
-        // Handle suggested actions if any
-        if (data.suggested_actions && data.suggested_actions.length > 0) {
-          const actionsText = data.suggested_actions.map((a: any) => `• ${a.label}`).join('\n')
-          const actionMessage: ChatMessage = {
-            id: (Date.now() + 2).toString(),
-            role: 'ai',
-            content: `Suggested actions:\n${actionsText}`,
-            timestamp: new Date()
-          }
+        // Add biological recommendations as follow-up if any
+        if (biologicalResult.recommendations.length > 0) {
           setTimeout(() => {
-            setMessages(prev => [...prev, actionMessage])
-          }, 500)
+            const recMessage: ChatMessage = {
+              id: (Date.now() + 2).toString(),
+              role: 'ai',
+              content: `🧬 Biological Recommendations:\n${biologicalResult.recommendations.map(r => `• ${r}`).join('\n')}`,
+              timestamp: new Date(),
+              aiMetadata: {
+                provider: 'biological',
+                model: 'organism',
+                reason: 'System health recommendations',
+                confidence: 0.95
+              }
+            }
+            setMessages(prev => [...prev, recMessage])
+          }, 1000)
         }
         
       } catch (error) {
-        console.error('AI chat error:', error)
-        // Fallback response
-        const aiResponse: ChatMessage = {
-          id: (Date.now() + 1).toString(),
-          role: 'ai',
-          content: `I received your message about "${inputMessage.slice(0, 50)}...". The AI service is temporarily unavailable, but your thought has been captured and saved.`,
-          timestamp: new Date()
+        console.error('Biological processing error:', error)
+        
+        // FALLBACK: Simple AI call without biological processing
+        try {
+          const response = await fetch('/api/ai/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              message: inputMessage,
+              history: messages.slice(-5),
+              userState: {
+                alignment_score: systemState.metrics.energyATP,
+                primary_goal: systemState.goals.find(g => g.isPrimary)?.name || 'None',
+                recent_topics: curiosityMap.slice(0, 3).map(c => c.topic),
+                drift_level: 'low',
+                preferred_provider: provider,
+                task_type: taskType
+              },
+              routing: {
+                provider,
+                taskType,
+                reason: 'Fallback routing',
+                model: config.model
+              }
+            })
+          })
+
+          if (!response.ok) throw new Error('AI request failed')
+          
+          const data = await response.json()
+          
+          const fallbackResponse: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'ai',
+            content: data.response || `I received: "${inputMessage.slice(0, 50)}..."`,
+            timestamp: new Date(),
+            aiMetadata: {
+              provider,
+              model: config.model,
+              reason: 'Fallback processing',
+              taskType,
+              fallback: true
+            }
+          }
+          setMessages(prev => [...prev, fallbackResponse])
+          
+        } catch (fallbackError) {
+          console.error('Fallback also failed:', fallbackError)
+          
+          // ULTIMATE FALLBACK
+          const ultimateResponse: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'ai',
+            content: `I received your message about "${inputMessage.slice(0, 30)}...". The system is experiencing difficulties, but your thought was captured.`,
+            timestamp: new Date(),
+            aiMetadata: {
+              provider: 'none',
+              model: 'offline',
+              reason: 'System offline',
+              fallback: true
+            }
+          }
+          setMessages(prev => [...prev, ultimateResponse])
         }
-        setMessages(prev => [...prev, aiResponse])
       }
     }
   }
@@ -1500,8 +1617,18 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
             {/* Chat Interface */}
             <div className="chat-container">
               <div className="chat-header">
-                <h3 className="heading-xl">AI Assistant</h3>
-                <div className="text-muted">System Analysis & Explanation</div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="heading-xl">AI Assistant</h3>
+                    <div className="text-muted">System Analysis & Explanation</div>
+                  </div>
+                  {/* AI Provider Selector (NEW) */}
+                  <AIProviderSelector
+                    selected={selectedAIProvider}
+                    onSelect={setSelectedAIProvider}
+                    availableProviders={availableProviders}
+                  />
+                </div>
               </div>
               
               <div className="chat-messages">
@@ -1511,6 +1638,16 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
                     <div className="text-muted" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
                       {message.timestamp.toLocaleTimeString()}
                     </div>
+                    {/* AI Metadata Display (NEW) */}
+                    {message.role === 'ai' && message.aiMetadata && (
+                      <AIMetadata
+                        provider={message.aiMetadata.provider}
+                        model={message.aiMetadata.model}
+                        reason={message.aiMetadata.reason}
+                        taskType={message.aiMetadata.taskType}
+                        confidence={message.aiMetadata.confidence}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
