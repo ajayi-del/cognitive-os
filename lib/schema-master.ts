@@ -1,4 +1,4 @@
-import { pgTable, uuid, text, timestamp, integer, decimal, boolean, jsonb, pgVector } from 'drizzle-orm/pg-core';
+import { pgTable, uuid, text, timestamp, integer, decimal, boolean, jsonb } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
 // Core User entity
@@ -12,7 +12,7 @@ export const users = pgTable('users', {
     preferredOutputStyle: 'concise' | 'detailed' | 'strategic';
     theme: 'dark' | 'light';
     notifications: boolean;
-  }>().default({}),
+  }>(),
 });
 
 // Core memory unit - notes, transcripts, dumps
@@ -23,7 +23,7 @@ export const notes = pgTable('notes', {
   content: text('content').notNull(),
   sourceType: text('source_type').default('text').$type<'text' | 'voice' | 'chat' | 'file'>(),
   fileHash: text('file_hash'),
-  embedding: pgVector('embedding', { dimensions: 1536 }),
+  embedding: text('embedding'),
   bucketId: uuid('bucket_id').references(() => ideaBuckets.id),
   projectId: uuid('project_id').references(() => projects.id),
   tags: text('tags').array().default([]),
@@ -49,11 +49,11 @@ export const ideaBuckets = pgTable('idea_buckets', {
   userId: uuid('user_id').references(() => users.id, { onDelete: 'cascade' }),
   title: text('title').notNull(),
   description: text('description'),
-  signalStrength: decimal('signal_strength', { precision: 3, scale: 2 }).default(0),
+  signalStrength: decimal('signal_strength', { precision: 3, scale: 2 }).default('0'),
   noteCount: integer('note_count').default(0),
   recurring: boolean('recurring').default(false),
   status: text('status').default('active').$type<'active' | 'archived' | 'promoted'>(),
-  embedding: pgVector('embedding', { dimensions: 1536 }),
+  embedding: text('embedding'),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });
@@ -67,7 +67,7 @@ export const projects = pgTable('projects', {
   status: text('status').default('planning').$type<'planning' | 'active' | 'paused' | 'completed'>(),
   priority: text('priority').default('medium').$type<'high' | 'medium' | 'low'>(),
   domain: text('domain').$type<'coding' | 'trading' | 'research' | 'personal'>(),
-  momentumScore: decimal('momentum_score', { precision: 3, scale: 2 }).default(0),
+  momentumScore: decimal('momentum_score', { precision: 3, scale: 2 }).default('0'),
   bucketId: uuid('bucket_id').references(() => ideaBuckets.id),
   nextActions: text('next_actions').array().default([]),
   blockers: text('blockers').array().default([]),
@@ -82,9 +82,9 @@ export const knowledgeNodes = pgTable('knowledge_nodes', {
   title: text('title').notNull(),
   description: text('description'),
   insightType: text('insight_type').$type<'pattern' | 'principle' | 'framework' | 'insight'>(),
-  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default(0),
+  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default('0'),
   sourceClusterIds: uuid('source_cluster_ids').array().default([]),
-  embedding: pgVector('embedding', { dimensions: 1536 }),
+  embedding: text('embedding'),
   createdAt: timestamp('created_at').defaultNow(),
 });
 
@@ -93,7 +93,7 @@ export const phaseStates = pgTable('phase_states', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => users.id, { onDelete: 'cascade' }),
   currentPhase: text('current_phase').$type<'exploration' | 'focus' | 'execution' | 'integration' | 'reflection'>(),
-  phaseConfidence: decimal('phase_confidence', { precision: 3, scale: 2 }).default(0),
+  phaseConfidence: decimal('phase_confidence', { precision: 3, scale: 2 }).default('0'),
   phaseStartDate: timestamp('phase_start_date').defaultNow(),
   dominantProjectIds: uuid('dominant_project_ids').array().default([]),
   allowedActions: text('allowed_actions').array().default([]),
@@ -125,9 +125,9 @@ export const actionQueueItems = pgTable('action_queue_items', {
   actionType: text('action_type').$type<'create' | 'analyze' | 'research' | 'execute' | 'review'>(),
   sourceType: text('source_type').$type<'pattern' | 'drift' | 'reflection' | 'manual' | 'workflow'>(),
   priority: text('priority').default('medium').$type<'high' | 'medium' | 'low'>(),
-  alignmentScore: decimal('alignment_score', { precision: 3, scale: 2 }).default(0),
-  phaseFitScore: decimal('phase_fit_score', { precision: 3, scale: 2 }).default(0),
-  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default(0),
+  alignmentScore: decimal('alignment_score', { precision: 3, scale: 2 }).default('0'),
+  phaseFitScore: decimal('phase_fit_score', { precision: 3, scale: 2 }).default('0'),
+  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default('0'),
   status: text('status').default('pending').$type<'pending' | 'accepted' | 'dismissed' | 'completed'>(),
   projectId: uuid('project_id').references(() => projects.id),
   bucketId: uuid('bucket_id').references(() => ideaBuckets.id),
@@ -156,7 +156,7 @@ export const patternReports = pgTable('pattern_reports', {
   patternType: text('pattern_type').$type<'recurring' | 'unfinished' | 'emerging' | 'declining'>(),
   title: text('title').notNull(),
   description: text('description'),
-  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default(0),
+  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default('0'),
   sourceIds: uuid('source_ids').array().default([]),
   suggestedAction: text('suggested_action'),
   createdAt: timestamp('created_at').defaultNow(),
@@ -169,7 +169,7 @@ export const reflectionInsights = pgTable('reflection_insights', {
   title: text('title').notNull(),
   description: text('description'),
   insightType: text('insight_type').$type<'strategic' | 'tactical' | 'behavioral' | 'systemic'>(),
-  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default(0),
+  confidenceScore: decimal('confidence_score', { precision: 3, scale: 2 }).default('0'),
   relatedPatternIds: uuid('related_pattern_ids').array().default([]),
   relatedNodeIds: uuid('related_node_ids').array().default([]),
   suggestedAction: text('suggested_action'),
@@ -196,10 +196,10 @@ export const cognitiveMapNodes = pgTable('cognitive_map_nodes', {
   nodeType: text('node_type').$type<'note' | 'bucket' | 'project' | 'theme' | 'insight'>(),
   refId: uuid('ref_id'), // Reference to original entity
   title: text('title').notNull(),
-  score: decimal('score', { precision: 3, scale: 2 }).default(0),
+  score: decimal('score', { precision: 3, scale: 2 }).default('0'),
   frequency: integer('frequency').default(0),
-  embedding: pgVector('embedding', { dimensions: 1536 }),
-  metadata: jsonb('metadata'),
+  embedding: text('embedding'),
+  metadata: jsonb('metadata').default({}),
   createdAt: timestamp('created_at').defaultNow(),
 });
 
@@ -210,7 +210,7 @@ export const cognitiveMapEdges = pgTable('cognitive_map_edges', {
   sourceId: uuid('source_id').references(() => cognitiveMapNodes.id),
   targetId: uuid('target_id').references(() => cognitiveMapNodes.id),
   edgeType: text('edge_type').$type<'similarity' | 'belonging' | 'evolution' | 'causal'>(),
-  weight: decimal('weight', { precision: 3, scale: 2 }).default(0),
+  weight: decimal('weight', { precision: 3, scale: 2 }).default('0'),
   explanation: text('explanation'),
   createdAt: timestamp('created_at').defaultNow(),
 });

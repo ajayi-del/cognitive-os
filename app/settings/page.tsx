@@ -1,7 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Settings, Brain, Database, Shield, Bell, Palette, Zap, Globe, Key, Save, RotateCcw } from 'lucide-react'
+import { 
+  Settings, Brain, Database, Shield, Bell, Palette, Zap, Globe, Key, Save, RotateCcw,
+  Cpu, Cloud, Server, Bot
+} from 'lucide-react'
+import { AI_PROVIDERS, AIProvider, AIProviderConfig } from '@/lib/ai-providers'
 
 interface UserPreferences {
   defaultAutonomyLevel: number
@@ -16,6 +20,12 @@ interface UserPreferences {
 }
 
 interface APIKeys {
+  provider: AIProvider
+  deepseek: string
+  kimik2: string
+  ollamaBaseUrl: string
+  customBaseUrl: string
+  customApiKey: string
   openai: string
   anthropic: string
   database: string
@@ -44,6 +54,12 @@ export default function SettingsPage() {
   })
 
   const [apiKeys, setApiKeys] = useState<APIKeys>({
+    provider: 'openai',
+    deepseek: '',
+    kimik2: '',
+    ollamaBaseUrl: 'http://localhost:11434',
+    customBaseUrl: '',
+    customApiKey: '',
     openai: '',
     anthropic: '',
     database: '',
@@ -146,6 +162,12 @@ export default function SettingsPage() {
       })
     } else if (type === 'api') {
       setApiKeys({
+        provider: 'openai',
+        deepseek: '',
+        kimik2: '',
+        ollamaBaseUrl: 'http://localhost:11434',
+        customBaseUrl: '',
+        customApiKey: '',
         openai: '',
         anthropic: '',
         database: '',
@@ -336,33 +358,132 @@ export default function SettingsPage() {
           <div className="space-y-6">
             <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-6 border border-white/10">
               <h3 className="text-xl font-semibold text-white mb-6 flex items-center">
-                <Key className="w-5 h-5 mr-2 text-yellow-400" />
-                API Configuration
+                <Bot className="w-5 h-5 mr-2 text-purple-400" />
+                AI Provider Selection
+              </h3>
+              
+              {/* Provider Selection */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-300 mb-3">Select AI Provider</label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {Object.entries(AI_PROVIDERS).map(([key, provider]) => (
+                    <button
+                      key={key}
+                      onClick={() => setApiKeys(prev => ({ ...prev, provider: key as AIProvider }))}
+                      className={`p-4 rounded-xl border transition-all text-left ${
+                        apiKeys.provider === key
+                          ? 'border-purple-500 bg-purple-500/20'
+                          : 'border-white/20 bg-white/5 hover:bg-white/10'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-semibold text-white capitalize">{key}</span>
+                        {provider.isFree && (
+                          <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Free</span>
+                        )}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {provider.models[0]} + {provider.models.length - 1} more
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Provider-specific fields */}
+              <div className="space-y-4">
+                {apiKeys.provider === 'openai' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">OpenAI API Key</label>
+                    <input
+                      type="password"
+                      value={apiKeys.openai}
+                      onChange={(e) => setApiKeys(prev => ({ ...prev, openai: e.target.value }))}
+                      placeholder="sk-..."
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Get your key from platform.openai.com</p>
+                  </div>
+                )}
+
+                {apiKeys.provider === 'deepseek' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">DeepSeek API Key</label>
+                    <input
+                      type="password"
+                      value={apiKeys.deepseek}
+                      onChange={(e) => setApiKeys(prev => ({ ...prev, deepseek: e.target.value }))}
+                      placeholder="sk-..."
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Get your key from platform.deepseek.com - Very affordable pricing!</p>
+                  </div>
+                )}
+
+                {apiKeys.provider === 'kimik2' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Kimi K2 API Key</label>
+                    <input
+                      type="password"
+                      value={apiKeys.kimik2}
+                      onChange={(e) => setApiKeys(prev => ({ ...prev, kimik2: e.target.value }))}
+                      placeholder="sk-..."
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Get your key from platform.moonshot.cn</p>
+                  </div>
+                )}
+
+                {apiKeys.provider === 'ollama' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Ollama Base URL</label>
+                    <input
+                      type="text"
+                      value={apiKeys.ollamaBaseUrl}
+                      onChange={(e) => setApiKeys(prev => ({ ...prev, ollamaBaseUrl: e.target.value }))}
+                      placeholder="http://localhost:11434"
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-green-400"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Install Ollama locally for completely free AI. Run: ollama run llama3.2</p>
+                  </div>
+                )}
+
+                {apiKeys.provider === 'custom' && (
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Custom Base URL</label>
+                      <input
+                        type="text"
+                        value={apiKeys.customBaseUrl}
+                        onChange={(e) => setApiKeys(prev => ({ ...prev, customBaseUrl: e.target.value }))}
+                        placeholder="https://api.your-provider.com/v1"
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Custom API Key</label>
+                      <input
+                        type="password"
+                        value={apiKeys.customApiKey}
+                        onChange={(e) => setApiKeys(prev => ({ ...prev, customApiKey: e.target.value }))}
+                        placeholder="Your API key..."
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400"
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500">Use any OpenAI-compatible API endpoint</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Database & Redis Section */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-6 border border-white/10">
+              <h3 className="text-xl font-semibold text-white mb-6 flex items-center">
+                <Database className="w-5 h-5 mr-2 text-green-400" />
+                Database Configuration
               </h3>
               
               <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">OpenAI API Key</label>
-                  <input
-                    type="password"
-                    value={apiKeys.openai}
-                    onChange={(e) => setApiKeys(prev => ({ ...prev, openai: e.target.value }))}
-                    placeholder="sk-..."
-                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Anthropic API Key</label>
-                  <input
-                    type="password"
-                    value={apiKeys.anthropic}
-                    onChange={(e) => setApiKeys(prev => ({ ...prev, anthropic: e.target.value }))}
-                    placeholder="sk-ant-..."
-                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400"
-                  />
-                </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Database URL</label>
                   <input

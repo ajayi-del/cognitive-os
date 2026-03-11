@@ -81,6 +81,8 @@ export default function NotesWorkspace() {
       content: newNote.content,
       sourceType: 'text',
       tags: newNote.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
+      linkedProjectId: undefined,
+      archived: false,
       createdAt: new Date(),
       updatedAt: new Date()
     }

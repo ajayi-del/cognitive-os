@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Target, TrendingUp, AlertTriangle, Brain, Zap, Users, Award, Compass, Plus, Edit, BarChart3 } from 'lucide-react'
+import { Target, TrendingUp, AlertTriangle, Brain, Zap, Users, Award, Compass, Plus, Edit, BarChart3, Clock } from 'lucide-react'
 
 interface FutureSelfProfile {
   id: string
