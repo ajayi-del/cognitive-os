@@ -5,6 +5,14 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
 
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'AI Tasks API',
+    status: 'active',
+    tasks: []
+  })
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()

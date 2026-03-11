@@ -1,6 +1,6 @@
 1:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:HL["/_next/static/css/117d820e38c3c946.css","style",{"crossOrigin":""}]
-0:["jsPJWIrsu3-wxxFA9EM1G",[[["",{"children":["projects",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/117d820e38c3c946.css","precedence":"next","crossOrigin":""}]],"$L4"]]]]
+0:["4CigKP0g7BGFtHti40zTM",[[["",{"children":["projects",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/117d820e38c3c946.css","precedence":"next","crossOrigin":""}]],"$L4"]]]]
 5:I[624,["596","static/chunks/596-4a7e07e5d4b07679.js","485","static/chunks/485-10e1b83c04a35d30.js","185","static/chunks/app/layout-c762f481c3f8ed1a.js"],"AppSidebar"]
 6:I[6954,[],""]
 7:I[7264,[],""]
