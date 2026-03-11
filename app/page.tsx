@@ -762,7 +762,7 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
     setMessages(prev => [...prev, aiResponse])
   }
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputMessage.trim()) {
       processCoreEvent('CAPTURE_THOUGHT', { content: inputMessage })
       
@@ -775,16 +775,60 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
       setMessages([...messages, newMessage])
       setInputMessage('')
       
-      // Generate deterministic AI response based on current state
-      setTimeout(() => {
+      // Call BAZINGA AI for real response
+      try {
+        const response = await fetch('/api/ai/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: inputMessage,
+            history: messages.slice(-5), // Last 5 messages for context
+            userState: {
+              alignment_score: systemState.alignment_score,
+              primary_goal: systemState.primary_goal,
+              recent_topics: systemState.recent_topics,
+              drift_level: systemState.drift_level
+            }
+          })
+        })
+
+        if (!response.ok) throw new Error('AI request failed')
+        
+        const data = await response.json()
+        
         const aiResponse: ChatMessage = {
           id: (Date.now() + 1).toString(),
           role: 'ai',
-          content: `Analysis: Current alignment is ${systemState.alignment_score}% with primary goal "${systemState.primary_goal}". Recent topics: ${systemState.recent_topics.join(', ')}. Drift level: ${systemState.drift_level}.`,
+          content: data.response || `I'm analyzing your message about "${inputMessage.slice(0, 30)}...". The AI service is processing your cognitive patterns.`,
           timestamp: new Date()
         }
         setMessages(prev => [...prev, aiResponse])
-      }, 1000)
+        
+        // Handle suggested actions if any
+        if (data.suggested_actions && data.suggested_actions.length > 0) {
+          const actionsText = data.suggested_actions.map((a: any) => `• ${a.label}`).join('\n')
+          const actionMessage: ChatMessage = {
+            id: (Date.now() + 2).toString(),
+            role: 'ai',
+            content: `Suggested actions:\n${actionsText}`,
+            timestamp: new Date()
+          }
+          setTimeout(() => {
+            setMessages(prev => [...prev, actionMessage])
+          }, 500)
+        }
+        
+      } catch (error) {
+        console.error('AI chat error:', error)
+        // Fallback response
+        const aiResponse: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          role: 'ai',
+          content: `I received your message about "${inputMessage.slice(0, 50)}...". The AI service is temporarily unavailable, but your thought has been captured and saved.`,
+          timestamp: new Date()
+        }
+        setMessages(prev => [...prev, aiResponse])
+      }
     }
   }
 
