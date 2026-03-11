@@ -144,8 +144,17 @@ export default function ConversationalAI() {
     // Simulate transcription (in real app, send to speech-to-text API)
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(voiceTranscript || "I'm working on optimizing my cognitive processes and need your guidance on the next strategic direction.")
-      }, 1000)
+        const mockTranscriptions = [
+          "Hey Nexus, can you help me with my trading analysis?",
+          "What are the current market trends?",
+          "I need to optimize my focus system",
+          "Can you analyze this chart pattern?",
+          "Help me organize my thoughts",
+          "What's the best approach for this problem?"
+        ]
+        const randomTranscript = mockTranscriptions[Math.floor(Math.random() * mockTranscriptions.length)]
+        resolve(randomTranscript)
+      }, 1500)
     })
   }
 
@@ -339,6 +348,42 @@ export default function ConversationalAI() {
 
         {/* Status Indicators */}
         <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center space-x-3">
+            <div className={`flex items-center space-x-1 ${
+              isAwake ? 'text-green-400' : 'text-gray-500'
+            }`}>
+              <div className={`w-2 h-2 rounded-full ${
+                isAwake ? 'bg-green-400 animate-pulse' : 'bg-gray-500'
+              }`}></div>
+              <span>{isAwake ? 'Awake' : 'Sleeping'}</span>
+            </div>
+            
+            {isListening && (
+              <div className="flex items-center space-x-1 text-blue-400">
+                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
+                <span>Listening...</span>
+              </div>
+            )}
+            
+            {isProcessing && (
+              <div className="flex items-center space-x-1 text-purple-400">
+                <div className="w-2 h-2 rounded-full bg-purple-400 animate-spin"></div>
+                <span>Processing...</span>
+              </div>
+            )}
+          </div>
+          
+          {/* Manual Wake Word Button */}
+          {!isAwake && (
+            <button
+              onClick={() => wakeAI()}
+              className="px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-xs rounded-full transition-colors"
+            >
+              Say "{aiIdentity.wakeWord}"
+            </button>
+          )}
+        </div>
+        <div className="flex items-center justify-between text-xs">
           <div className="flex items-center space-x-2">
             <div className={`w-2 h-2 rounded-full ${
               isAwake ? 'bg-green-500' : 'bg-gray-500'
@@ -469,7 +514,27 @@ export default function ConversationalAI() {
 
       {/* Voice Controls */}
       <div className="p-4 border-t border-gray-700">
-        <div className="flex items-center justify-between mb-3">
+        {isAwake && (
+          <div className="flex items-center space-x-2 mb-3">
+            <input
+              type="text"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              placeholder="Type your message..."
+              className="flex-1 px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400 focus:outline-none focus:border-purple-500"
+            />
+            <button
+              onClick={handleSendMessage}
+              disabled={!inputText.trim()}
+              className="px-3 py-2 bg-purple-500 hover:bg-purple-600 disabled:bg-gray-700 disabled:text-gray-500 text-white rounded-lg transition-colors"
+            >
+              <Send className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+        
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <button
               onClick={toggleListening}
@@ -482,10 +547,17 @@ export default function ConversationalAI() {
                     : 'bg-purple-500 hover:bg-purple-600 text-white'
               }`}
             >
-              <div className="flex items-center space-x-2">
-                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-                <span>{isListening ? 'Stop Recording' : 'Voice Input'}</span>
-              </div>
+              {isListening ? (
+                <div className="flex items-center space-x-2">
+                  <MicOff className="w-4 h-4" />
+                  <span>Stop</span>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <Mic className="w-4 h-4" />
+                  <span>Talk</span>
+                </div>
+              )}
             </button>
             
             {voiceTranscript && (
@@ -494,29 +566,6 @@ export default function ConversationalAI() {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Text Input */}
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-            placeholder={isAwake ? "Type your message..." : "Wake me up first!"}
-            disabled={!isAwake}
-            className="flex-1 p-3 bg-gray-800 border border-gray-700 rounded-lg 
-                     text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 
-                     disabled:bg-gray-900 disabled:cursor-not-allowed"
-          />
-          <button
-            onClick={handleSendMessage}
-            disabled={!isAwake || !inputText.trim()}
-            className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg 
-                     font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-          >
-            <Send className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>
