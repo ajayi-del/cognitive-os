@@ -11,6 +11,7 @@ import { AICompanion } from '@/components/AICompanion'
 import LivingAICompanion from '@/components/LivingAICompanion'
 import EvolutionEngine from '@/components/EvolutionEngine'
 import ConversationalAI from '@/components/ConversationalAI'
+import ImageAnalysisAI from '@/components/ImageAnalysisAI'
 import { MiniMap } from '@/components/MiniMap'
 import { MorningBriefing } from '@/components/MorningBriefing'
 import { TimePerception } from '@/components/TimePerception'
@@ -2274,6 +2275,9 @@ const startFocusSession = (actionItem: ActionQueueItem) => {
         
         {/* Conversational AI - Voice & Text Interaction */}
         <ConversationalAI />
+        
+        {/* Image Analysis AI - Pattern Recognition */}
+        <ImageAnalysisAI />
         
         {/* Evolution Engine - Self-Improving System */}
         <EvolutionEngine />
