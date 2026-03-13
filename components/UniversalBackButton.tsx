@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 interface UniversalBackButtonProps {
   showHome?: boolean
-  showMenu?: boolean
+  showMenuProp?: boolean
   customBackPath?: string
 }
 
