@@ -1,174 +1,362 @@
+// MORNING BRIEFING COMPONENT
+// Real morning briefing with DeepSeek integration
+
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, Sun, Moon, Sparkles, Bell } from 'lucide-react'
+import { Calendar, Target, AlertTriangle, TrendingUp, Clock } from 'lucide-react'
+import { callAI } from '@/lib/ai-providers-SIMPLIFIED'
 
-interface Briefing {
-  id: string
-  type: 'morning' | 'afternoon' | 'evening' | 'alert' | 'insight'
-  title: string
-  message: string
+interface BriefingData {
+  focusAreas: string[]
+  recentPatterns: string[]
+  priorities: string[]
+  driftAlerts: string[]
   timestamp: Date
-  priority: 'low' | 'medium' | 'high'
 }
 
-export function MorningBriefing() {
-  const [briefings, setBriefings] = useState<Briefing[]>([])
-  const [isVisible, setIsVisible] = useState(true)
-  const [currentTime, setCurrentTime] = useState(new Date())
+export default function MorningBriefing() {
+  const [briefing, setBriefing] = useState<BriefingData | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  // Update time every minute
+  const generateBriefing = async () => {
+    setIsLoading(true)
+    setError(null)
+    
+    try {
+      const response = await callAI({
+        messages: [
+          {
+            role: 'user',
+            content: `You are Nexus, providing a morning briefing. Current date: ${new Date().toLocaleDateString()}. 
+            Generate a comprehensive morning briefing in JSON format with these exact keys:
+            {
+              "focusAreas": ["3 main focus areas for today"],
+              "recentPatterns": ["2-3 patterns noticed recently"],
+              "priorities": ["3 top priorities for today"],
+              "driftAlerts": ["any drift alerts or concerns"]
+            }
+            Be specific, actionable, and concise. Focus on what matters most.`
+          },
+          {
+            role: 'user',
+            content: "Please provide my morning briefing for today in the requested JSON format."
+          }
+        ]
+      })
+
+      // Parse the JSON response
+      let briefingData
+      try {
+        briefingData = JSON.parse(response.content)
+      } catch (parseError) {
+        // If JSON parsing fails, create structured data from text
+        const content = response.content
+        briefingData = {
+          focusAreas: content.includes('focus') ? [content.split('\n').find(l => l.includes('focus'))?.trim() || 'Focus on core objectives'] : ['Focus on core objectives'],
+          recentPatterns: content.includes('pattern') ? [content.split('\n').find(l => l.includes('pattern'))?.trim() || 'Review recent activities'] : ['Review recent activities'],
+          priorities: content.includes('priority') ? [content.split('\n').find(l => l.includes('priority'))?.trim() || 'Complete high-priority tasks'] : ['Complete high-priority tasks'],
+          driftAlerts: content.includes('drift') ? [content.split('\n').find(l => l.includes('drift'))?.trim() || 'Monitor alignment'] : ['Monitor alignment']
+        }
+      }
+
+      setBriefing({
+        ...briefingData,
+        timestamp: new Date()
+      })
+
+    } catch (err) {
+      console.error('Briefing generation error:', err)
+      setError('Failed to generate briefing. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 60000)
-    return () => clearInterval(timer)
+    generateBriefing()
   }, [])
 
-  // Generate contextual briefings
-  useEffect(() => {
-    const hour = currentTime.getHours()
-    const greetings = {
-      morning: 'Good morning',
-      afternoon: 'Good afternoon',
-      evening: 'Good evening',
-    }
-
-    let timeOfDay: 'morning' | 'afternoon' | 'evening' = 'morning'
-    if (hour >= 12 && hour < 17) timeOfDay = 'afternoon'
-    else if (hour >= 17) timeOfDay = 'evening'
-
-    // Generate morning briefing
-    const morningBriefing: Briefing = {
-      id: 'morning-' + Date.now(),
-      type: timeOfDay,
-      title: `${greetings[timeOfDay]}!`,
-      message: `You have 3 unprocessed captures and 2 actions in your queue. Your alignment score is at 72%.`,
-      timestamp: new Date(),
-      priority: 'medium',
-    }
-
-    // Add AI insight
-    const aiInsight: Briefing = {
-      id: 'insight-' + Date.now(),
-      type: 'insight',
-      title: '🤖 AI Insight',
-      message: `I've noticed you've been capturing more about "trading patterns" lately. Would you like me to help you structure this into a project?`,
-      timestamp: new Date(),
-      priority: 'low',
-    }
-
-    setBriefings([morningBriefing, aiInsight])
-
-    // Auto-hide after 30 seconds
-    const hideTimer = setTimeout(() => {
-      setIsVisible(false)
-    }, 30000)
-
-    return () => clearTimeout(hideTimer)
-  }, [currentTime])
-
-  const dismissBriefing = (id: string) => {
-    setBriefings(prev => prev.filter(b => b.id !== id))
-  }
-
-  const getIcon = (type: string) => {
-    switch (type) {
-      case 'morning':
-        return <Sun className="w-5 h-5 text-amber-400" />
-      case 'afternoon':
-        return <Sun className="w-5 h-5 text-yellow-400" />
-      case 'evening':
-        return <Moon className="w-5 h-5 text-blue-400" />
-      case 'alert':
-        return <Bell className="w-5 h-5 text-red-400" />
-      case 'insight':
-        return <Sparkles className="w-5 h-5 text-purple-400" />
-      default:
-        return <Sun className="w-5 h-5" />
-    }
-  }
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return 'border-l-red-500'
-      case 'medium':
-        return 'border-l-amber-500'
-      case 'low':
-        return 'border-l-blue-500'
-      default:
-        return 'border-l-gray-500'
-    }
-  }
-
-  if (!isVisible || briefings.length === 0) {
+  if (isLoading) {
     return (
-      <button
-        onClick={() => setIsVisible(true)}
-        className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 hover:text-white hover:border-gray-600 transition-all"
-      >
-        <Bell className="w-4 h-4 inline mr-2" />
-        Show Briefing
-      </button>
+      <div style={{
+        padding: '40px 20px',
+        textAlign: 'center',
+        color: '#8892b0',
+      }}>
+        <div style={{ fontSize: '24px', marginBottom: '16px' }}>🌅</div>
+        <div style={{ fontSize: '16px' }}>Generating morning briefing...</div>
+      </div>
     )
   }
 
+  if (error) {
+    return (
+      <div style={{
+        padding: '40px 20px',
+        textAlign: 'center',
+        color: '#ef4444',
+      }}>
+        <div style={{ fontSize: '24px', marginBottom: '16px' }}>⚠️</div>
+        <div style={{ fontSize: '16px', marginBottom: '16px' }}>{error}</div>
+        <button
+          onClick={generateBriefing}
+          style={{
+            background: 'rgba(239, 68, 68, 0.2)',
+            border: '1px solid rgba(239, 68, 68, 0.3)',
+            borderRadius: '8px',
+            padding: '8px 16px',
+            color: '#fff',
+            fontSize: '14px',
+            cursor: 'pointer',
+          }}
+        >
+          Retry
+        </button>
+      </div>
+    )
+  }
+
+  if (!briefing) {
+    return null
+  }
+
   return (
-    <div className="briefing-center">
-      <AnimatePresence mode="popLayout">
-        {briefings.map((briefing) => (
-          <motion.div
-            key={briefing.id}
-            layout
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className={`briefing-card mb-3 border-l-4 ${getPriorityColor(briefing.priority)}`}
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-1">{getIcon(briefing.type)}</div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">{briefing.title}</h4>
-                  <p className="text-sm text-gray-300 leading-relaxed">{briefing.message}</p>
-                  <div className="mt-3 flex gap-2">
-                    {briefing.type === 'insight' && (
-                      <>
-                        <button
-                          onClick={() => dismissBriefing(briefing.id)}
-                          className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-xs rounded-lg transition-colors"
-                        >
-                          Yes, help me
-                        </button>
-                        <button
-                          onClick={() => dismissBriefing(briefing.id)}
-                          className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 text-xs rounded-lg transition-colors"
-                        >
-                          Not now
-                        </button>
-                      </>
-                    )}
-                    {briefing.type !== 'insight' && (
-                      <button
-                        onClick={() => dismissBriefing(briefing.id)}
-                        className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 text-xs rounded-lg transition-colors"
-                      >
-                        Got it
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <button
-                onClick={() => dismissBriefing(briefing.id)}
-                className="text-gray-500 hover:text-white transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
+    <div style={{
+      padding: '20px',
+      background: 'rgba(8, 14, 24, 0.95)',
+      borderRadius: '12px',
+      border: '1px solid rgba(80, 160, 255, 0.2)',
+    }}>
+      {/* Header */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: '20px',
+        paddingBottom: '12px',
+        borderBottom: '1px solid rgba(80, 160, 255, 0.1)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '8px',
+            background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#fff',
+            fontSize: '18px',
+          }}>
+            🌅
+          </div>
+          <div>
+            <h2 style={{ color: '#fff', margin: 0, fontSize: '18px' }}>
+              Morning Briefing
+            </h2>
+            <p style={{ color: '#8892b0', margin: '4px 0 0 0', fontSize: '12px' }}>
+              {briefing.timestamp.toLocaleDateString()} • {briefing.timestamp.toLocaleTimeString()}
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={generateBriefing}
+          style={{
+            background: 'rgba(59, 130, 246, 0.2)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            borderRadius: '6px',
+            padding: '6px 12px',
+            color: '#fff',
+            fontSize: '12px',
+            cursor: 'pointer',
+          }}
+        >
+          Refresh
+        </button>
+      </div>
+
+      {/* Focus Areas */}
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '12px',
+        }}>
+          <Target size={16} style={{ color: '#3b82f6' }} />
+          <h3 style={{ color: '#fff', margin: 0, fontSize: '14px' }}>
+            Today's Focus Areas
+          </h3>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {briefing.focusAreas.map((area, index) => (
+            <div
+              key={index}
+              style={{
+                padding: '8px 12px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                borderRadius: '6px',
+                color: '#cbd5e1',
+                fontSize: '13px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <div style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#3b82f6',
+              }} />
+              {area}
             </div>
-          </motion.div>
-        ))}
-      </AnimatePresence>
+          ))}
+        </div>
+      </div>
+
+      {/* Recent Patterns */}
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '12px',
+        }}>
+          <TrendingUp size={16} style={{ color: '#10b981' }} />
+          <h3 style={{ color: '#fff', margin: 0, fontSize: '14px' }}>
+            Recent Patterns
+          </h3>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {briefing.recentPatterns.map((pattern, index) => (
+            <div
+              key={index}
+              style={{
+                padding: '8px 12px',
+                background: 'rgba(16, 185, 129, 0.1)',
+                border: '1px solid rgba(16, 185, 129, 0.2)',
+                borderRadius: '6px',
+                color: '#cbd5e1',
+                fontSize: '13px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <div style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#10b981',
+              }} />
+              {pattern}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Top Priorities */}
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '12px',
+        }}>
+          <Calendar size={16} style={{ color: '#f59e0b' }} />
+          <h3 style={{ color: '#fff', margin: 0, fontSize: '14px' }}>
+            Top Priorities
+          </h3>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {briefing.priorities.map((priority, index) => (
+            <div
+              key={index}
+              style={{
+                padding: '8px 12px',
+                background: 'rgba(245, 158, 11, 0.1)',
+                border: '1px solid rgba(245, 158, 11, 0.2)',
+                borderRadius: '6px',
+                color: '#cbd5e1',
+                fontSize: '13px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <div style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#f59e0b',
+              }} />
+              {priority}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Drift Alerts */}
+      {briefing.driftAlerts.length > 0 && (
+        <div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '12px',
+          }}>
+            <AlertTriangle size={16} style={{ color: '#ef4444' }} />
+            <h3 style={{ color: '#fff', margin: 0, fontSize: '14px' }}>
+              Drift Alerts
+            </h3>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {briefing.driftAlerts.map((alert, index) => (
+              <div
+                key={index}
+                style={{
+                  padding: '8px 12px',
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  border: '1px solid rgba(239, 68, 68, 0.2)',
+                  borderRadius: '6px',
+                  color: '#cbd5e1',
+                  fontSize: '13px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
+              >
+                <div style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: '#ef4444',
+                }} />
+                {alert}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <div style={{
+        marginTop: '20px',
+        paddingTop: '12px',
+        borderTop: '1px solid rgba(80, 160, 255, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        color: '#8892b0',
+        fontSize: '12px',
+      }}>
+        <Clock size={12} />
+        Generated by Nexus • DeepSeek AI
+      </div>
     </div>
   )
 }

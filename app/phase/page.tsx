@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Brain, Compass, Zap, Target, TrendingUp, AlertTriangle, Activity, BarChart3, Clock, ArrowRight } from 'lucide-react'
+import { ClientDate } from '@/components/ui/ClientDate'
 
 interface PhaseState {
   id: string

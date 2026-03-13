@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Brain, Target, Zap, TrendingUp, ArrowUp, Archive, Plus, Filter, Search } from 'lucide-react'
+import { ClientDate } from '@/components/ui/ClientDate'
 
 interface IdeaBucket {
   id: string

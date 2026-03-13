@@ -1,0 +1,226 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  status      String @default("active")
+  lastTouched DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("projects")
+}
+
+model IdeaBucket {
+  id              String   @id @default(cuid())
+  title           String
+  signalStrength  Float    @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("idea_buckets")
+}
+
+model PatternReport {
+  id        String   @id @default(cuid())
+  title     String
+  pattern   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("pattern_reports")
+}
+
+model KnowledgeNode {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("knowledge_nodes")
+}
+
+model PhaseState {
+  id              String   @id @default(cuid())
+  currentPhase    String   @default("unknown")
+  phaseConfidence Float    @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("phase_states")
+}
+
+model FutureSelfProfile {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("future_self_profiles")
+}
+
+model DriftSignal {
+  id          String   @id @default(cuid())
+  description String
+  severity    String   @default("low")
+  detectedAt  DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("drift_signals")
+}
+
+model ActionQueueItem {
+  id       String   @id @default(cuid())
+  title    String
+  status   String   @default("pending")
+  priority Int     @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("action_queue_items")
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// NEXUS COGNITIVE OS - CANONICAL EVENT LAYER (IMMUTABLE)
+// These are the only tables that store canonical, immutable events.
+// All other data must be rebuildable from these sources.
+// ═══════════════════════════════════════════════════════════════════════
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String?
+  content   String
+  userId    String?  // Add userId field
+  atpScore  Float    @default(50)  // ATP score from biological-coherence
+  embedding  Unsupported("vector(1536)")? // OpenAI text-embedding-3-small dimensions
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("notes")
+}
+
+model Action {
+  id          String   @id @default(cuid())
+  description String
+  status      String   // pending, completed, cancelled
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+  
+  @@map("actions")
+}
+
+model Feedback {
+  id         String   @id @default(cuid())
+  actionId   String
+  outcome    String   // success, failure, neutral
+  notes      String?
+  createdAt  DateTime @default(now())
+  
+  @@map("feedback")
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// DERIVED INTERPRETATION LAYER (REBUILDABLE)
+// These models store derived data that can be completely regenerated
+// from the canonical event layer above. Never use these as source of truth.
+// ═══════════════════════════════════════════════════════════════════════
+
+model NexusMessage {
+  id             String   @id @default(cuid())
+  type           String   // briefing | insight | drift | fix-proposal | project-proposal | mutation-proposal
+  priority       Int      @default(1) // 1=low, 5=critical
+  title          String
+  content        String   // JSON string — structure varies by type
+  isRead         Boolean  @default(false)
+  requiresAction Boolean  @default(false)
+  actionTaken    String?  // approved | rejected | dismissed | null
+  actionTakenAt  DateTime?
+  relatedIds     String   @default("[]") // JSON array of related note/project IDs
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@map("nexus_messages")
+}
+
+model SeedPattern {
+  id               String   @id @default(cuid())
+  theme            String   // extracted theme label
+  keywords         String   @default("[]") // JSON array of key terms
+  captureIds       String   @default("[]") // JSON array of note IDs
+  occurrences      Int      @default(1)
+  firstSeenAt      DateTime @default(now())
+  lastSeenAt       DateTime @updatedAt
+  status           String   @default("watching") // watching | proposed | accepted | snoozed | dormant
+  proposedProjectId String?
+  nexusMessageId   String?
+  confidence       Float    @default(0.5)
+  
+  @@map("seed_patterns")
+}
+
+// ─── NEXUS CHESS MODELS ─────────────────────────────────────────────────────────
+// Separate domain for chess games - isolated from canonical captures
+
+model ChessGame {
+  id               String   @id @default(cuid())
+  status           String   @default("active") // active | finished | abandoned
+  fen              String   // Current board position in FEN notation
+  pgn              String   @default("") // Full game history in PGN
+  userColor        String   @default("white") // white | black
+  engineLevel      Int      @default(10) // Stockfish skill level (1-20)
+  result           String?  // "1-0" | "0-1" | "1/2-1/2" | "*"
+  nexusMovePending Boolean  @default(false) // Whether Nexus is currently thinking
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  lastMoveAt       DateTime @default(now())
+  
+  // Relations
+  moves            ChessMove[]
+  insights         ChessInsight[]
+  
+  @@map("chess_games")
+}
+
+model ChessMove {
+  id          String   @id @default(cuid())
+  gameId      String
+  moveNumber  Int      // 1, 2, 3, etc.
+  by          String   // user | nexus
+  san         String   // Standard Algebraic Notation (e.g., "e4", "Nf3")
+  uci         String   // Universal Computer Interface (e.g., "e2e4", "g1f3")
+  fenAfter    String   // Board position after this move
+  evaluation  Float?   // Engine evaluation in centipawns
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  game        ChessGame @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  @@map("chess_moves")
+}
+
+model ChessInsight {
+  id        String   @id @default(cuid())
+  gameId    String
+  type      String   // aggression | development | tactical | positional | timing
+  content   String   // Insight description
+  confidence Float   @default(0.5)
+  createdAt DateTime @default(now())
+  
+  // Relations
+  game      ChessGame @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  @@map("chess_insights")
+}

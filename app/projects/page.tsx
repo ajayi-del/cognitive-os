@@ -527,7 +527,7 @@ export default function ProjectsPage() {
               )}
             </div>
           ) : (
-            filteredProjects.map(project => <ProjectCard key={project.id} project={project} />)
+            filteredProjects.map(proj => <ProjectCard key={proj.id} project={proj} />)
           )}
         </div>
       </div>

@@ -66,7 +66,7 @@ export default function LivingAICompanion() {
   const audioChunksRef = useRef<Blob[]>([])
 
   // Tiny AI Companion Position - Start in a more visible position
-  const [position, setPosition] = useState({ x: window.innerWidth - 100, y: 100 })
+  const [position, setPosition] = useState({ x: typeof window !== 'undefined' ? window.innerWidth - 100 : 100, y: 100 })
   const [isDragging, setIsDragging] = useState(false)
 
   // AI Mood Animation States
@@ -163,7 +163,7 @@ export default function LivingAICompanion() {
   // Real audio transcription using Web Speech API
   const transcribeAudio = async (audioBlob: Blob): Promise<string> => {
     // Try to use Web Speech API for real transcription
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    if (typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
       return new Promise((resolve, reject) => {
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
         const recognition = new SpeechRecognition()

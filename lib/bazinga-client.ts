@@ -1,7 +1,7 @@
 // BAZINGA AI Service Client
 // Communicates with the Python FastAPI backend
 
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
+const AI_SERVICE_URL = "https://api.deepseek.com/v1"
 
 interface AIResponse {
   success: boolean

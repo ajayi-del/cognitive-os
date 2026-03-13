@@ -125,7 +125,7 @@ interface GardenViewProps {
   }>
 }
 
-export function GardenView({ captures }: GardenViewProps) {
+export default function GardenView({ captures }: GardenViewProps) {
   const nodes = useMemo(() => {
     return captures.map((capture, index) => ({
       id: capture.id,

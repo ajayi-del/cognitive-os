@@ -1,29 +1,31 @@
 // AI Provider Abstraction Layer
-// Supports OpenAI, DeepSeek, Kimi K2, and other OpenAI-compatible APIs
+// Supports OpenAI, DeepSeek, Gemini, Ollama, and other OpenAI-compatible APIs
 
-export type AIProvider = 'openai' | 'deepseek' | 'kimik2' | 'ollama' | 'custom';
+export type AIProvider = 'openai' | 'deepseek' | 'gemini' | 'ollama' | 'custom';
 
 export interface AIMessage {
-  role: 'system' | 'user' | 'assistant';
+  role: 'user' | 'assistant';
   content: string;
 }
 
+import { GoogleGenerativeAI } from '@google/generative-ai'
+
 export interface AIRequest {
-  messages: AIMessage[];
-  model?: string;
-  temperature?: number;
-  max_tokens?: number;
-  stream?: boolean;
+  messages: Array<{ role: 'user' | 'assistant'; content: string }>
+  model?: string
+  temperature?: number
+  max_tokens?: number
+  stream?: boolean
 }
 
 export interface AIResponse {
   content: string;
+  model?: string;
   usage?: {
     prompt_tokens: number;
     completion_tokens: number;
     total_tokens: number;
   };
-  model?: string;
 }
 
 export interface AIProviderConfig {
@@ -35,6 +37,7 @@ export interface AIProviderConfig {
   supportsStreaming: boolean;
   supportsEmbeddings: boolean;
   isFree?: boolean;
+  envKey?: string; // Environment variable name for API key
 }
 
 // Provider configurations
@@ -56,15 +59,17 @@ export const AI_PROVIDERS: Record<AIProvider, Omit<AIProviderConfig, 'apiKey'>> 
     supportsStreaming: true,
     supportsEmbeddings: false, // DeepSeek doesn't have embeddings yet
     isFree: false, // Very cheap but not free
+    envKey: 'DEEPSEEK_API_KEY'
   },
-  kimik2: {
-    provider: 'kimik2',
-    baseUrl: 'https://api.moonshot.cn/v1',
-    defaultModel: 'kimi-k2',
-    models: ['kimi-k2', 'kimi-k1', 'kimi-moonshot'],
+  gemini: {
+    provider: 'gemini',
+    baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
+    defaultModel: 'gemini-2.0-flash-exp',
+    models: ['gemini-2.0-flash-exp', 'gemini-1.5-pro', 'gemini-1.5-flash'],
     supportsStreaming: true,
     supportsEmbeddings: true,
-    isFree: false,
+    isFree: false, // Has free tier but paid for higher usage
+    envKey: 'GOOGLE_GENAI_API_KEY'
   },
   ollama: {
     provider: 'ollama',
@@ -74,6 +79,7 @@ export const AI_PROVIDERS: Record<AIProvider, Omit<AIProviderConfig, 'apiKey'>> 
     supportsStreaming: true,
     supportsEmbeddings: true,
     isFree: true, // Local = free
+    envKey: 'OLLAMA_BASE_URL'
   },
   custom: {
     provider: 'custom',
@@ -95,7 +101,41 @@ export class AIService {
   }
 
   async chat(request: AIRequest): Promise<AIResponse> {
-    const url = `${this.config.baseUrl || AI_PROVIDERS[this.config.provider].baseUrl}/chat/completions`;
+    const provider = AI_PROVIDERS[this.config.provider];
+    
+    if (this.config.provider === 'gemini') {
+      // Gemini API using Google GenAI SDK
+      const genAI = new GoogleGenerativeAI(this.config.apiKey)
+      
+      try {
+        const model = genAI.getGenerativeModel({ model: request.model || this.config.defaultModel })
+        const result = await model.generateContent({
+          contents: request.messages.map(msg => ({
+            role: msg.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: msg.content }]
+          })),
+          generationConfig: {
+            temperature: request.temperature ?? 0.7,
+            maxOutputTokens: request.max_tokens ?? 2000,
+          },
+        });
+        
+        return {
+          content: result.response.text(),
+          usage: {
+            prompt_tokens: result.response.usageMetadata?.promptTokenCount || 0,
+            completion_tokens: result.response.usageMetadata?.candidatesTokenCount || 0,
+            total_tokens: (result.response.usageMetadata?.promptTokenCount || 0) + (result.response.usageMetadata?.candidatesTokenCount || 0)
+          }
+        };
+      } catch (error) {
+        console.error('Gemini API Error:', error);
+        throw error;
+      }
+    }
+
+    // OpenAI-compatible format (DeepSeek, OpenAI, Ollama, Custom)
+    const url = `${this.config.baseUrl || provider.baseUrl}/chat/completions`;
     
     const body = {
       model: request.model || this.config.defaultModel,
@@ -198,6 +238,12 @@ export class AIService {
   }
 
   async createEmbedding(text: string): Promise<number[]> {
+    // Only create embeddings for PostgreSQL (pgvector)
+    if (!process.env.DATABASE_URL?.includes('postgresql')) {
+      console.warn('Embeddings disabled: Using SQLite dev mode');
+      return [];
+    }
+    
     if (!this.config.supportsEmbeddings) {
       throw new Error('Provider does not support embeddings');
     }
@@ -249,7 +295,7 @@ export async function generateSummary(
   const response = await service.chat({
     messages: [
       {
-        role: 'system',
+        role: 'user',
         content: `You are a summarization assistant. Create a concise summary in ${maxLength} characters or less.`,
       },
       {
@@ -271,7 +317,7 @@ export async function analyzeSentiment(
   const response = await service.chat({
     messages: [
       {
-        role: 'system',
+        role: 'user',
         content: 'Analyze the sentiment and respond with only: positive, negative, or neutral.',
       },
       {
@@ -297,7 +343,7 @@ export async function generateTasks(
   const response = await service.chat({
     messages: [
       {
-        role: 'system',
+        role: 'user',
         content: `Generate ${count} actionable tasks based on the context. Respond with a JSON array of task strings.`,
       },
       {

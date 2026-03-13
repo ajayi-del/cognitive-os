@@ -1,0 +1,1948 @@
+
+> cognitive-os@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+   ▲ Next.js 14.0.0
+   - Local:        http://localhost:3001
+   - Environments: .env.local
+
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     "env.KIMIK2_API_KEY" is missing, expected string
+ ⚠     "env.CUSTOM_AI_BASE_URL" is missing, expected string
+ ⚠     "env.CUSTOM_AI_API_KEY" is missing, expected string
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ✓ Ready in 3.3s
+   Reload env: .env.local
+[?25h
+
+> cognitive-os@0.1.0 dev
+> next dev
+
+   ▲ Next.js 14.0.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     "env.KIMIK2_API_KEY" is missing, expected string
+ ⚠     "env.CUSTOM_AI_BASE_URL" is missing, expected string
+ ⚠     "env.CUSTOM_AI_API_KEY" is missing, expected string
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ✓ Ready in 5.7s
+ ○ Compiling /api/chat/route ...
+ ✓ Compiled /api/chat/route in 602ms (25 modules)
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async POST (webpack-internal:///(rsc)/./app/api/chat/route.ts:94:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+Chat API error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async POST (webpack-internal:///(rsc)/./app/api/chat/route.ts:94:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+ ✓ Compiled in 201ms (25 modules)
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async POST (webpack-internal:///(rsc)/./app/api/chat/route.ts:94:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+Chat API error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async POST (webpack-internal:///(rsc)/./app/api/chat/route.ts:94:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+ ○ Compiling /page ...
+ ✓ Compiled /page in 15.1s (3477 modules)
+ ✓ Compiled in 1356ms (1783 modules)
+ ✓ Compiled in 2.4s (1783 modules)
+ ✓ Compiled in 1556ms (1783 modules)
+ ✓ Compiled in 626ms (1783 modules)
+ ✓ Compiled in 1417ms (1783 modules)
+ ✓ Compiled in 3.2s (1783 modules)
+ ✓ Compiled in 565ms (1783 modules)
+ ✓ Compiled in 907ms (1781 modules)
+ ✓ Compiled in 1149ms (1783 modules)
+ ✓ Compiled in 662ms (1783 modules)
+ ✓ Compiled in 1670ms (1783 modules)
+ ✓ Compiled in 738ms (1783 modules)
+ ✓ Compiled in 694ms (1783 modules)
+ ✓ Compiled in 522ms (1783 modules)
+ ✓ Compiled in 1351ms (1783 modules)
+ ✓ Compiled in 394ms (1783 modules)
+ ○ Compiling /page ...
+ ✓ Compiled /page in 861ms (1685 modules)
+ ○ Compiling /api/system-state/route ...
+ ✓ Compiled /api/system-state/route in 1672ms (1691 modules)
+ ✓ Compiled (1713 modules)
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+gemini Morning Briefing error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+gemini Morning Briefing error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+gemini Morning Briefing error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+gemini Morning Briefing error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+ ○ Compiling /chat/page ...
+ ✓ Compiled /chat/page in 3.4s (3424 modules)
+ ○ Compiling /notes/page ...
+ ✓ Compiled /notes/page in 624ms (3436 modules)
+ ✓ Compiled in 5.7s (1792 modules)
+ ✓ Compiled in 917ms (1792 modules)
+ ✓ Compiled in 645ms (1792 modules)
+ ✓ Compiled in 749ms (1792 modules)
+ ✓ Compiled in 724ms (1792 modules)
+ ✓ Compiled in 674ms (1792 modules)
+ ✓ Compiled in 733ms (1792 modules)
+ ✓ Compiled in 605ms (1792 modules)
+ ⚠ ./app/page.tsx
+Attempted import error: 'AgentStatusBar' is not exported from '@/components/ui/AgentStatusBar' (imported as 'AgentStatusBar').
+
+Import trace for requested module:
+./app/page.tsx
+
+./app/page.tsx
+Attempted import error: 'AgentStatusBar' is not exported from '@/components/ui/AgentStatusBar' (imported as 'AgentStatusBar').
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ ./app/page.tsx
+Attempted import error: 'AgentStatusBar' is not exported from '@/components/ui/AgentStatusBar' (imported as 'AgentStatusBar').
+
+Import trace for requested module:
+./app/page.tsx
+
+./app/page.tsx
+Attempted import error: 'AgentStatusBar' is not exported from '@/components/ui/AgentStatusBar' (imported as 'AgentStatusBar').
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ ./app/page.tsx
+Attempted import error: 'AgentStatusBar' is not exported from '@/components/ui/AgentStatusBar' (imported as 'AgentStatusBar').
+
+Import trace for requested module:
+./app/page.tsx
+
+./app/page.tsx
+Attempted import error: 'AgentStatusBar' is not exported from '@/components/ui/AgentStatusBar' (imported as 'AgentStatusBar').
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 2.6s (3486 modules)
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js:1:12844
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js:1:12916)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/notes'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.3s (3563 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 767ms (3568 modules)
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+ ✓ Compiled in 984ms (1918 modules)
+ ✓ Compiled in 1133ms (1915 modules)
+ ✓ Compiled in 1062ms (1915 modules)
+ ✓ Compiled in 5s (3643 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ○ Compiling /api/morning-brief/route ...
+ ✓ Compiled /chat/page in 3.6s (1734 modules)
+ ✓ Compiled (1762 modules)
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/chat/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js:1:12844
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/notes/page.js:1:12916)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/chat/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/notes'
+}
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/chat/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80371
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80463)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/chat/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/'
+}
+ ○ Compiling /projects/page ...
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+gemini Morning Briefing error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+Gemini API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+gemini Morning Briefing error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:410:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:382:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:820:22)
+    at async AIService.chat (webpack-internal:///(rsc)/./lib/ai-providers.ts:98:32)
+    at async GET (webpack-internal:///(rsc)/./app/api/morning-brief/route.ts:32:30)
+    at async /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:61856 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: [
+    {
+      '@type': 'type.googleapis.com/google.rpc.ErrorInfo',
+      reason: 'API_KEY_INVALID',
+      domain: 'googleapis.com',
+      metadata: [Object]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
+      locale: 'en-US',
+      message: 'API key not valid. Please pass a valid API key.'
+    }
+  ]
+}
+ ✓ Compiled /projects/page in 4.2s (3617 modules)
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ○ Compiling /memory/page ...
+ ✓ Compiled /cognitive-map/page in 4.5s (3665 modules)
+ ○ Compiling /settings/page ...
+ ✓ Compiled /settings/page in 2.4s (3693 modules)
+ ✓ Compiled in 2.2s (3693 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 1136ms (3698 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ✓ Compiled in 1640ms (3600 modules)
+ ✓ Compiled in 361ms (1872 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/export/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/export/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found_client-reference-manifest' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found_client-reference-manifest' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found_client-reference-manifest (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found_client-reference-manifest.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/export/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/export/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ○ Compiling /actions/page ...
+ ✓ Compiled /actions/page in 761ms (1735 modules)
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/actions/page.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/actions/page.js:1:17776
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/actions/page.js:1:17843)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/actions/page.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/actions'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 816ms (3609 modules)
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 724ms (3614 modules)
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80371
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80463)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80371
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80463)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ ⨯ Error: Cannot find module './9658.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80371
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:80463)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './3310.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:307
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/pages/_document.js:1:369)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:55:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:54:33)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/vendor-chunks/clsx.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/clsx' in /Users/dayodapper/CascadeProjects/cognitive-os/.next/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/vendor-chunks/clsx.js', but to 'Error: Can't resolve './vendor-chunks/clsx' in '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/clsx (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/vendor-chunks/clsx.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+   ▲ Next.js 14.0.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     "env.CUSTOM_AI_BASE_URL" is missing, expected string
+ ⚠     "env.CUSTOM_AI_API_KEY" is missing, expected string
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ✓ Ready in 5.3s
+ ○ Compiling /page ...
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+ ⨯ Failed to download `Inter` from Google Fonts. Using fallback font instead.
+
+Failed to fetch `Inter` from Google Fonts.}
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+AbortError: The user aborted a request.
+    at abort (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65190)
+    at AbortSignal.abortAndFinalize (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/node-fetch/index.js:1:65410)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)
+    at runAbort (node:internal/abort_controller:488:10)
+    at abortSignal (node:internal/abort_controller:459:3)
+    at AbortController.abort (node:internal/abort_controller:507:5)
+    at Timeout.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/@next/font/dist/google/fetch-font-file.js:24:51)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  type: 'aborted'
+}
+ ✓ Compiled /page in 15.4s (3422 modules)
+[?25h

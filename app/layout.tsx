@@ -1,14 +1,8 @@
+'use client'
+
+import { QueryClientProvider } from '@tanstack/react-query'
+import { queryClient } from '@/lib/query-client'
 import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { AppSidebar } from '@/components/layout/app-sidebar'
-
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Cognitive OS - Personal AI Operating System',
-  description: 'Transform scattered thoughts into structured action and strategic direction',
-}
 
 export default function RootLayout({
   children,
@@ -16,17 +10,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className + " cognitive-bg min-h-screen"}>
-        <div className="flex">
-          {/* Navigation Sidebar */}
-          <AppSidebar />
-          
-          {/* Main Content */}
-          <div className="flex-1 min-h-screen">
-            {children}
-          </div>
-        </div>
+    <html lang="en">
+      <head>
+        <title>Nexus Cognitive OS - Personal AI Operating System</title>
+        <meta name="description" content="Nexus - Personal Cognitive AI Operating System for Systems Thinkers" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className="cognitive-bg min-h-screen">
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </body>
     </html>
   )

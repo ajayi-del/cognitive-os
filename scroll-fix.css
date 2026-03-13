@@ -1,0 +1,112 @@
+/* SCROLL FIX FOR COGNITIVE OS */
+/* Add this to your global CSS or layout.css */
+
+/* Enable scrolling for all main content areas */
+.min-h-screen {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Fix scrolling for specific components */
+.cognitive-bg {
+  overflow-y: auto !important;
+  height: 100vh !important;
+}
+
+/* Fix sidebar navigation */
+.premium-nav {
+  overflow-y: auto !important;
+  max-height: calc(100vh - 200px) !important;
+}
+
+/* Fix main content area */
+.flex-1 {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix card containers */
+.premium-card-elevated {
+  overflow-y: auto !important;
+  max-height: none !important;
+}
+
+/* Fix Future Self page */
+.bg-gradient-to-br {
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+}
+
+/* Fix Settings page */
+.settings-container {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix Memory Library */
+.memory-library {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix Cognitive Map */
+.cognitive-map {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix Face Engine */
+.face-engine {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix Intelligence Area */
+.intelligence-area {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix Idea Bucket */
+.idea-bucket {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Fix Dashboard */
+.dashboard {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* General scroll fix for all containers */
+div[class*="min-h-screen"] {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+/* Remove fixed positioning that blocks scrolling */
+.fixed {
+  position: relative !important;
+}
+
+/* Ensure body can scroll */
+body {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+html {
+  overflow-y: auto !important;
+  height: auto !important;
+}

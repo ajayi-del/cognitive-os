@@ -50,20 +50,21 @@ export function AICompanion() {
 
   if (!isVisible) {
     return (
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        className="ai-avatar"
-        onClick={() => setIsVisible(true)}
-        style={{
-          position: 'fixed',
-          bottom: '2rem',
-          right: '2rem',
-          zIndex: 1000,
-        }}
+      <motion.div
+        className="fixed bottom-4 right-4 z-40"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
+        exit={{ opacity: 0, scale: 0.8 }}
       >
-        <Brain className="w-8 h-8 text-white" />
-      </motion.button>
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="ai-avatar"
+          onClick={() => setIsVisible(true)}
+        >
+          <Brain className="w-8 h-8 text-white" />
+        </motion.button>
+      </motion.div>
     )
   }
 

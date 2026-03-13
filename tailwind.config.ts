@@ -1,88 +1,91 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  darkMode: 'class',
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
+      // Colors
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: {
+          DEFAULT: '#060810',
+          secondary: '#0c1018',
+          tertiary: '#161e2e',
+          surface: '#0a0a0a',
+          glass: 'rgba(17, 17, 17, 0.8)',
+        },
+        text: {
+          DEFAULT: '#c8d8f0',
+          secondary: '#6880a0',
+          tertiary: '#3a4f70',
+          inverse: '#060810',
+          muted: '#3a4f70',
+        },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#4090ff',
+          foreground: '#ffffff',
         },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+        success: {
+          DEFAULT: '#10b981',
+          foreground: '#ffffff',
         },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+        warning: {
+          DEFAULT: '#f59e0b',
+          foreground: '#ffffff',
         },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+        error: {
+          DEFAULT: '#ef4444',
+          foreground: '#ffffff',
         },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+        info: {
+          DEFAULT: '#06b6d4',
+          foreground: '#ffffff',
         },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        // Cognitive OS specific colors
-        cognitive: {
-          bg: '#0a0a0a',
-          surface: '#1a1a1a',
-          elevated: '#2d2d30',
-          border: '#3e3e42',
-          text: '#e4e4e7',
-          textMuted: '#969696',
-          accent: '#58a6ff',
-          success: '#4ecdc4',
-          warning: '#feca57',
-          danger: '#ff6b6b',
+        border: {
+          DEFAULT: 'rgba(255, 255, 255, 0.1)',
+          focus: 'rgba(64, 144, 255, 0.5)',
         },
       },
+      
+      // Typography
       fontFamily: {
-        mono: ['JetBrains Mono', 'Monaco', 'Menlo', 'monospace'],
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Syne', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', 'monospace'],
+        display: ['Syne', 'system-ui'],
+      },
+      
+      // Animation
+      keyframes: {
+        'neural-pulse': {
+          '0%, 100%': {
+            opacity: '0.3',
+            transform: 'scale(1)',
+          },
+          '50%': {
+            opacity: '0.8',
+            transform: 'scale(1.05)',
+          },
+        },
+        'biological-glow': {
+          '0%, 100%': {
+            boxShadow: '0 0 20px rgba(64, 144, 255, 0.3)',
+          },
+          '50%': {
+            boxShadow: '0 0 30px rgba(64, 144, 255, 0.5)',
+          },
+        },
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        pulseSubtle: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.8' },
-        },
+        'neural-pulse': 'neural-pulse 2s ease-in-out infinite',
+        'biological-glow': 'biological-glow 3s ease-in-out infinite',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [],
 }
 
 export default config

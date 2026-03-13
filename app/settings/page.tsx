@@ -22,12 +22,11 @@ interface UserPreferences {
 interface APIKeys {
   provider: AIProvider
   deepseek: string
-  kimik2: string
+  gemini: string
   ollamaBaseUrl: string
   customBaseUrl: string
   customApiKey: string
   openai: string
-  anthropic: string
   database: string
   redis: string
 }
@@ -56,12 +55,11 @@ export default function SettingsPage() {
   const [apiKeys, setApiKeys] = useState<APIKeys>({
     provider: 'openai',
     deepseek: '',
-    kimik2: '',
+    gemini: '',
     ollamaBaseUrl: 'http://localhost:11434',
     customBaseUrl: '',
     customApiKey: '',
     openai: '',
-    anthropic: '',
     database: '',
     redis: ''
   })
@@ -164,12 +162,11 @@ export default function SettingsPage() {
       setApiKeys({
         provider: 'openai',
         deepseek: '',
-        kimik2: '',
+        gemini: '',
         ollamaBaseUrl: 'http://localhost:11434',
         customBaseUrl: '',
         customApiKey: '',
         openai: '',
-        anthropic: '',
         database: '',
         redis: ''
       })
@@ -420,17 +417,17 @@ export default function SettingsPage() {
                   </div>
                 )}
 
-                {apiKeys.provider === 'kimik2' && (
+                {apiKeys.provider === 'gemini' && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Kimi K2 API Key</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Gemini API Key</label>
                     <input
                       type="password"
-                      value={apiKeys.kimik2}
-                      onChange={(e) => setApiKeys(prev => ({ ...prev, kimik2: e.target.value }))}
-                      placeholder="sk-..."
-                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400"
+                      value={apiKeys.gemini}
+                      onChange={(e) => setApiKeys(prev => ({ ...prev, gemini: e.target.value }))}
+                      placeholder="AIza..."
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Get your key from platform.moonshot.cn</p>
+                    <p className="text-xs text-gray-500 mt-1">Get your key from ai.google.dev - Free tier available!</p>
                   </div>
                 )}
 

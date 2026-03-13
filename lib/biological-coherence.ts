@@ -410,3 +410,31 @@ export class BiologicalOrchestrator {
 
 // Singleton instance
 export const biologicalOrchestrator = new BiologicalOrchestrator()
+
+// ATP Score calculation based on content analysis
+export const calculateATPScore = (content: string): number => {
+  // Base score
+  let score = 50
+  
+  // Energy indicators
+  if (content.includes('excited') || content.includes('energy')) score += 20
+  if (content.includes('tired') || content.includes('drained')) score -= 20
+  
+  // Complexity indicators
+  const wordCount = content.split(' ').length
+  if (wordCount > 50) score += 15
+  if (wordCount > 100) score += 25
+  
+  // Action items
+  const actionWords = ['todo', 'task', 'action', 'implement', 'build', 'create']
+  const hasActionWords = actionWords.some(word => content.toLowerCase().includes(word))
+  if (hasActionWords) score += 10
+  
+  // Questions and curiosity
+  const questionWords = ['why', 'how', 'what', 'when', 'where', 'question']
+  const hasQuestions = questionWords.some(word => content.toLowerCase().includes(word))
+  if (hasQuestions) score += 15
+  
+  // Normalize to 0-100 range
+  return Math.max(0, Math.min(100, score))
+}

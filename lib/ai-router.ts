@@ -18,17 +18,17 @@ export type TaskType =
 
 // Routing table - deterministic mapping with better distribution
 const ROUTING_TABLE: Record<TaskType, AIProvider> = {
-  summary: 'gemini',          // Gemini for summaries
-  tagging: 'gemini',          // Gemini for categorization
-  drift_explanation: 'gemini', // Gemini for analysis
+  summary: 'deepseek',          // DeepSeek for summaries
+  tagging: 'deepseek',          // DeepSeek for categorization
+  drift_explanation: 'deepseek', // DeepSeek for analysis
   coding: 'deepseek',         // DeepSeek for coding
   debugging: 'deepseek',     // DeepSeek for debugging
-  memory_analysis: 'gemini', // Gemini for memory tasks
+  memory_analysis: 'deepseek', // DeepSeek for memory tasks
   external_research: 'grok',  // Grok for research
   market_context: 'grok',     // Grok for market data
-  planning: 'gemini',         // Gemini for planning (changed from OpenAI)
+  planning: 'deepseek',         // DeepSeek for planning
   architecture: 'deepseek',   // DeepSeek for architecture
-  general: 'gemini'           // Gemini for general (changed from Ollama)
+  general: 'deepseek',           // DeepSeek for general
 }
 
 // Provider configurations
@@ -171,12 +171,12 @@ export class ProviderRouter {
   }
   
   private initializeProviders() {
-    // OLLAMA - Local default
+    // OLLAMA - Local default (disabled unless explicitly enabled)
     this.providers.set('ollama', {
       name: 'Ollama',
       baseUrl: process.env.OLLAMA_BASE_URL || 'http://localhost:11434',
       model: process.env.OLLAMA_MODEL || 'llama2',
-      enabled: true // Always enabled as fallback
+      enabled: !!(process.env.OLLAMA_BASE_URL) // Only enabled if explicitly configured
     })
     
     // DEEPSEEK - Coding specialist

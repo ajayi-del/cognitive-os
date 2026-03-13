@@ -1,0 +1,115 @@
+/* PAGE-SPECIFIC SCROLL FIXES */
+/* Add to app/globals.css or create new CSS file */
+
+/* Future Self Page */
+.future-self-page {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+.future-self-page .min-h-screen {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Face Engine Page */
+.face-engine-page {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+.face-engine-page .min-h-screen {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Memory Library Page */
+.memory-library-page {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+.memory-library-page .min-h-screen {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Settings Page */
+.settings-page {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+.settings-page .min-h-screen {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Cognitive Map Page */
+.cognitive-map-page {
+  overflow-y: auto !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+.cognitive-map-page .min-h-screen {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Intelligence Area */
+.intelligence-area {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Idea Bucket */
+.idea-bucket {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Dashboard */
+.dashboard {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* General fix for all gradient backgrounds */
+.bg-gradient-to-br {
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  max-height: none !important;
+}
+
+/* Fix for main content area */
+.flex-1 {
+  overflow-y: auto !important;
+  height: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Touch scroll support for mobile */
+@media (pointer: coarse) {
+  .future-self-page,
+  .face-engine-page,
+  .memory-library-page,
+  .settings-page,
+  .cognitive-map-page {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+  }
+}

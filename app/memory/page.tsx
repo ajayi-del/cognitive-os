@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Brain, Zap, Layers, TrendingUp, BarChart3, Target, Play, Clock, Filter, Search } from 'lucide-react'
+import { ClientDate } from '@/components/ui/ClientDate'
 
 interface KnowledgeNode {
   id: string
@@ -333,7 +334,7 @@ export default function MemoryPage() {
                   <div className="text-center">
                     <div className="text-sm text-purple-300 mb-1">Last Run</div>
                     <div className="text-white font-semibold">
-                      {new Date(compressionStats.lastCompression).toLocaleDateString()}
+                      <ClientDate date={compressionStats.lastCompression} />
                     </div>
                   </div>
                 </div>
@@ -465,7 +466,7 @@ export default function MemoryPage() {
                 
                 <div className="flex items-center justify-between">
                   <div className="text-gray-400 text-sm">
-                    Created: {new Date(node.createdAt).toLocaleDateString()}
+                    Created: <ClientDate date={node.createdAt} />
                   </div>
                   
                   <div className="flex items-center space-x-2">
@@ -512,7 +513,7 @@ export default function MemoryPage() {
                 
                 <div className="flex items-center justify-between">
                   <div className="text-gray-400 text-sm">
-                    Created: {new Date(insight.createdAt).toLocaleDateString()}
+                    Created: <ClientDate date={insight.createdAt} />
                   </div>
                   
                   <div className="flex items-center space-x-2">
@@ -562,7 +563,7 @@ export default function MemoryPage() {
                 
                 <div className="flex items-center justify-between">
                   <div className="text-gray-400 text-sm">
-                    Created: {new Date(pattern.createdAt).toLocaleDateString()}
+                    Created: <ClientDate date={pattern.createdAt} />
                   </div>
                   
                   <div className="flex items-center space-x-2">
@@ -605,7 +606,7 @@ export default function MemoryPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-400">Last Compression</span>
-                  <span className="text-white font-bold">{new Date(compressionStats.lastCompression).toLocaleDateString()}</span>
+                  <span className="text-white font-bold"><ClientDate date={compressionStats.lastCompression} /></span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-400">Avg Confidence</span>

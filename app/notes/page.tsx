@@ -27,6 +27,9 @@ export default function NotesWorkspace() {
     tags: ''
   })
 
+  // NOTE: This page now connects to real data from your Diary entries
+  // All notes here come from the same database that feeds Nexus
+
   useEffect(() => {
     loadNotes()
   }, [])
@@ -34,65 +37,64 @@ export default function NotesWorkspace() {
   const loadNotes = async () => {
     setIsLoading(true)
     
-    // Mock data for now
-    setTimeout(() => {
-      setNotes([
-        {
-          id: '1',
-          title: 'Trading System Architecture',
-          content: 'Need to build modular trading engine with separate risk management, execution, and analysis modules. The system should handle multiple asset classes and timeframes.',
-          sourceType: 'text',
-          tags: ['trading', 'coding', 'architecture'],
-          archived: false,
-          createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
-          updatedAt: new Date(Date.now() - 2 * 60 * 60 * 1000)
-        },
-        {
-          id: '2',
-          title: 'Pattern Recognition Insights',
-          content: 'Markets show repeating patterns in volatility compression before breakouts. This suggests opportunity for systematic entry strategies based on statistical edge.',
-          sourceType: 'text',
-          tags: ['trading', 'patterns', 'research'],
-          archived: false,
-          createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
-          updatedAt: new Date(Date.now() - 5 * 60 * 60 * 1000)
-        },
-        {
-          id: '3',
-          title: 'Cognitive Workflow Ideas',
-          content: 'My current workflow is scattered across multiple tools. Need unified system for capturing thoughts, detecting patterns, and executing on insights systematically.',
-          sourceType: 'text',
-          tags: ['productivity', 'systems', 'personal'],
-          archived: false,
-          createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000),
-          updatedAt: new Date(Date.now() - 24 * 60 * 60 * 1000)
-        }
-      ])
+    try {
+      const response = await fetch('/api/captures')
+      if (!response.ok) throw new Error('Failed to fetch notes')
+      
+      const notesData = await response.json()
+      
+      // Transform prisma.note data to Note interface
+      const transformedNotes: Note[] = notesData.map((note: any) => ({
+        id: note.id,
+        title: note.title || 'Untitled',
+        content: note.content,
+        sourceType: note.content.includes('voice:') ? 'voice' : 'text',
+        tags: [], // TODO: Extract tags from content
+        linkedProjectId: undefined,
+        archived: false,
+        createdAt: new Date(note.createdAt),
+        updatedAt: new Date(note.updatedAt)
+      }))
+      
+      setNotes(transformedNotes)
+    } catch (error) {
+      console.error('Failed to load notes:', error)
+      // Fallback to empty array
+      setNotes([])
+    } finally {
       setIsLoading(false)
-    }, 1000)
+    }
   }
 
-  const handleCreateNote = () => {
+  const handleCreateNote = async () => {
     if (!newNote.title.trim() || !newNote.content.trim()) return
 
-    const note: Note = {
-      id: Date.now().toString(),
-      title: newNote.title,
-      content: newNote.content,
-      sourceType: 'text',
-      tags: newNote.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
-      linkedProjectId: undefined,
-      archived: false,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
+    try {
+      const response = await fetch('/api/captures', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          title: newNote.title,
+          content: newNote.content,
+          rawContent: newNote.content
+        })
+      })
 
-    setNotes(prev => [note, ...prev])
-    setNewNote({ title: '', content: '', tags: '' })
-    setShowCreateForm(false)
+      if (!response.ok) throw new Error('Failed to create note')
+
+      // Reload notes to show the new one
+      await loadNotes()
+      
+      // Reset form
+      setNewNote({ title: '', content: '', tags: '' })
+      setShowCreateForm(false)
+    } catch (error) {
+      console.error('Failed to create note:', error)
+    }
   }
 
-  const handleArchiveNote = (id: string) => {
+  const handleArchiveNote = async (id: string) => {
+    // TODO: Implement archive via API
     setNotes(prev => prev.map(note => 
       note.id === id ? { ...note, archived: true } : note
     ))

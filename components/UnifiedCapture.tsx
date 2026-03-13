@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Mic, StopCircle, Play, Trash2, Upload, X, Image as ImageIcon, FileText } from 'lucide-react'
 
@@ -26,6 +26,7 @@ interface UnifiedCaptureProps {
 }
 
 export function UnifiedCapture({ onCapture }: UnifiedCaptureProps) {
+  // Renamed to Diary but keeping component name for compatibility
   const [activeTab, setActiveTab] = useState<'text' | 'voice' | 'image'>('text')
   const [textInput, setTextInput] = useState('')
   const [isRecording, setIsRecording] = useState(false)
@@ -33,11 +34,37 @@ export function UnifiedCapture({ onCapture }: UnifiedCaptureProps) {
   const [recordings, setRecordings] = useState<VoiceRecording[]>([])
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
   const [isDragging, setIsDragging] = useState(false)
+  const [lastSyncedContent, setLastSyncedContent] = useState('')
+  const [showSyncIndicator, setShowSyncIndicator] = useState(false)
+  const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
+  const [isSaving, setIsSaving] = useState(false)
   
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const chunksRef = useRef<Blob[]>([])
   const timerRef = useRef<NodeJS.Timeout | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  // 2-minute auto-sync for text input
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      // Only sync if content has changed and is non-empty
+      if (textInput.trim() && textInput !== lastSyncedContent) {
+        try {
+          await fetch('/api/captures', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: textInput })
+          })
+          setLastSyncedContent(textInput)
+          // Show subtle sync indicator
+          setShowSyncIndicator(true)
+          setTimeout(() => setShowSyncIndicator(false), 2000)
+        } catch { /* silent fail */ }
+      }
+    }, 2 * 60 * 1000) // 2 minutes
+    
+    return () => clearInterval(interval)
+  }, [textInput, lastSyncedContent])
 
   // Voice Recording Functions
   const startRecording = useCallback(async () => {
@@ -171,13 +198,37 @@ export function UnifiedCapture({ onCapture }: UnifiedCaptureProps) {
     })
   }, [])
 
-  // Text submission
-  const submitText = useCallback(() => {
-    if (textInput.trim()) {
-      onCapture(textInput, 'text')
+  // Text submission - hardened with error handling
+  const submitText = useCallback(async () => {
+    if (!textInput.trim() || isSaving) return
+    
+    setIsSaving(true)
+    setSaveState('saving')
+    
+    try {
+      const res = await fetch('/api/captures', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: textInput })
+      })
+      
+      if (!res.ok) throw new Error(`Save failed: ${res.status}`)
+      
       setTextInput('')
+      setSaveState('saved')
+      setTimeout(() => setSaveState('idle'), 2000)
+      
+      // Call the original onCapture if provided
+      onCapture(textInput, 'text')
+      
+    } catch (err) {
+      setSaveState('error')
+      console.error('[capture save]', err)
+      // DO NOT clear text on error - user can retry
+    } finally {
+      setIsSaving(false)
     }
-  }, [textInput, onCapture])
+  }, [textInput, onCapture, isSaving])
 
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -219,22 +270,63 @@ export function UnifiedCapture({ onCapture }: UnifiedCaptureProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <textarea
-            value={textInput}
-            onChange={(e) => setTextInput(e.target.value)}
-            placeholder="Drop your thought here..."
-            className="capture-textarea"
-            rows={4}
-          />
+          <div style={{ position: 'relative' }}>
+            <textarea
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+              placeholder="Drop your thought here... This feeds Nexus directly."
+              className="capture-textarea"
+              rows={4}
+            />
+            {/* Auto-sync indicator */}
+            {showSyncIndicator && (
+              <div style={{
+                position: 'absolute', top: '8px', right: '8px',
+                fontSize: '10px', color: '#00d880', fontFamily: 'monospace',
+                background: 'rgba(0,216,128,0.1)', padding: '2px 6px', borderRadius: '3px'
+              }}>
+                ● synced
+              </div>
+            )}
+            
+            {/* Save state indicators */}
+            {saveState === 'saved' && (
+              <div style={{
+                position: 'absolute', bottom: '8px', right: '8px',
+                fontSize: '9px', fontFamily: 'monospace',
+                color: '#00d880', letterSpacing: '1px'
+              }}>
+                ✓ SAVED
+              </div>
+            )}
+            {saveState === 'error' && (
+              <div style={{
+                position: 'absolute', bottom: '8px', right: '8px',
+                fontSize: '9px', fontFamily: 'monospace',
+                color: '#ff3850', letterSpacing: '1px', cursor: 'pointer'
+              }} onClick={submitText}>
+                ✗ RETRY
+              </div>
+            )}
+            {saveState === 'saving' && (
+              <div style={{
+                position: 'absolute', bottom: '8px', right: '8px',
+                fontSize: '9px', fontFamily: 'monospace',
+                color: '#f09020', letterSpacing: '1px'
+              }}>
+                ● SAVING
+              </div>
+            )}
+          </div>
           <div className="capture-actions">
-            <span className="hint">Press Enter to save</span>
+            <span className="hint">Press Enter to save to Diary</span>
             <button 
               className="capture-submit"
               onClick={submitText}
               disabled={!textInput.trim()}
             >
               <Upload className="w-4 h-4" />
-              Save
+              Save to Diary
             </button>
           </div>
         </motion.div>

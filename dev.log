@@ -1,0 +1,279 @@
+
+> cognitive-os@0.1.0 dev
+> next dev
+
+   ▲ Next.js 14.0.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Ready in 3.8s
+ ○ Compiling /page ...
+ ✓ Compiled /page in 10.1s (2709 modules)
+ ○ Compiling /api/system-state/route ...
+ ✓ Compiled /api/system-state/route in 2.3s (1368 modules)
+ ○ Compiling /chat/page ...
+ ✓ Compiled /chat/page in 921ms (2743 modules)
+ ✓ Compiled /notes/page in 462ms (2741 modules)
+ ○ Compiling /phase/page ...
+ ✓ Compiled /phase/page in 515ms (2749 modules)
+ ○ Compiling /buckets/page ...
+ ✓ Compiled /buckets/page in 554ms (2737 modules)
+ ○ Compiling /cognitive-map/page ...
+ ✓ Compiled /cognitive-map/page in 2.1s (2749 modules)
+ ○ Compiling /future/page ...
+ ✓ Compiled /future/page in 568ms (2117 modules)
+ ✓ Compiled /page in 260ms (1377 modules)
+ ○ Compiling /api/system-state/route ...
+ ✓ Compiled /api/system-state/route in 579ms (1401 modules)
+ ○ Compiling /api/chat/route ...
+ ✓ Compiled /api/chat/route in 622ms (1409 modules)
+ ○ Compiling /chat/page ...
+ ✓ Compiled /chat/page in 1117ms (1401 modules)
+ ○ Compiling /self-mod/page ...
+ ✓ Compiled /self-mod/page in 2.2s (2784 modules)
+ ○ Compiling /notes/page ...
+ ✓ Compiled /notes/page in 1595ms (1378 modules)
+ ✓ Compiled /api/system-state/route in 333ms (1402 modules)
+ ✓ Compiled in 4.2s (2778 modules)
+ ✓ Compiled in 1100ms (2768 modules)
+ ✓ Compiled in 396ms (1396 modules)
+ ✓ Compiled in 444ms (1396 modules)
+ ✓ Compiled in 561ms (1396 modules)
+ ✓ Compiled in 494ms (1396 modules)
+ ✓ Compiled in 749ms (1396 modules)
+ ✓ Compiled in 282ms (1396 modules)
+ ✓ Compiled in 297ms (1396 modules)
+ ✓ Compiled in 590ms (1396 modules)
+ ✓ Compiled in 895ms (1396 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 1924ms (2759 modules)
+ ⨯ Error: Cannot find module './7105.js'
+Require stack:
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js
+- /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:198:28)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:162:22)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:79753
+    at Object.<anonymous> (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/page.js:25:79845)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js:109:84)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:84
+    at async loadComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/next-server.js:666:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.9s (2918 modules)
+ ✓ Compiled in 290ms (1521 modules)
+ ✓ Compiled in 473ms (1521 modules)
+ ✓ Compiled in 629ms (1521 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/not-found' in /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js', but to 'Error: Can't resolve '../../../../.next/server/app/not-found' in '/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/not-found (expected /Users/dayodapper/CascadeProjects/cognitive-os/.next/server/app/not-found.js)
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/worker.js
+<w>  at file dependencies /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>)
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100881
+    at eo (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101066)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103499
+    at Object._fromJSON (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103851)
+    at JSON.parse (<anonymous>)
+    at eu (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101560)
+    at en (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100628)
+    at K (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:99620)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46019)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at ac (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:7923)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13014
+    at ap (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13038)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45795)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53606
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54286
+    at ak (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54294)
+    at Timeout._onTimeout (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:4037)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100881
+    at eo (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101066)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103499
+    at Object._fromJSON (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103851)
+    at JSON.parse (<anonymous>)
+    at eu (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101560)
+    at en (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100628)
+    at K (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:99620)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46019)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at ac (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:7923)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13014
+    at ap (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13038)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45795)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53606
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54286
+    at ak (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54294)
+    at Timeout._onTimeout (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:4037)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  page: '/'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>)
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100881
+    at eo (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101066)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103499
+    at Object._fromJSON (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103851)
+    at JSON.parse (<anonymous>)
+    at eu (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101560)
+    at en (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100628)
+    at K (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:99620)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46019)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at ac (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:7923)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13014
+    at ap (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13038)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45795)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53606
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54286
+    at ak (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54294)
+    at Timeout._onTimeout (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:4037)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100881
+    at eo (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101066)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103499
+    at Object._fromJSON (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103851)
+    at JSON.parse (<anonymous>)
+    at eu (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101560)
+    at en (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100628)
+    at K (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:99620)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46019)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at ac (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:7923)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13014
+    at ap (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13038)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45795)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53606
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54286
+    at ak (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54294)
+    at Timeout._onTimeout (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:4037)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  page: '/'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at JSON.parse (<anonymous>)
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100881
+    at eo (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101066)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103499
+    at Object._fromJSON (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103851)
+    at JSON.parse (<anonymous>)
+    at eu (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101560)
+    at en (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100628)
+    at K (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:99620)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46019)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at ac (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:7923)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13014
+    at ap (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13038)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45795)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53606
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54286
+    at ak (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54294)
+    at Timeout._onTimeout (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:4037)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/dayodapper/CascadeProjects/cognitive-os/.next/server/webpack-runtime.js:33:42)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100881
+    at eo (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101066)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103499
+    at Object._fromJSON (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:103851)
+    at JSON.parse (<anonymous>)
+    at eu (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:101560)
+    at en (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:100628)
+    at K (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:99620)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46019)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at ac (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:7923)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13014
+    at ap (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:13038)
+    at e (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45795)
+    at ah (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:47773)
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53606
+    at /Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54286
+    at ak (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:54294)
+    at Timeout._onTimeout (/Users/dayodapper/CascadeProjects/cognitive-os/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:4037)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  page: '/'
+}

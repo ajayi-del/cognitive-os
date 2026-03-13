@@ -74,8 +74,8 @@ export function AppSidebar() {
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-green-400 to-green-600 rounded-full animate-pulse" />
         </div>
         <div>
-          <h2 className="text-lg font-bold text-foreground">Cognitive OS</h2>
-          <p className="text-xs text-muted-foreground">Command Center</p>
+          <h2 className="text-lg font-bold text-foreground">JARVIS Cognitive OS</h2>
+          <p className="text-xs text-muted-foreground">Nexus Active</p>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export function AppSidebar() {
       <nav className="space-y-6">
         {navigationGroups.map((group, groupIndex) => (
           <div key={group.title}>
-            <h3 className="premium-meta uppercase tracking-wider mb-3 px-3">
+            <h3 className="j-label mb-3 px-3">
               {group.title}
             </h3>
             <div className="space-y-1">
