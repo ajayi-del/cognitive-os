@@ -106,7 +106,11 @@ export function CognitiveInsights() {
     )
   }
 
-  const { domains, insights, report, evolution } = synthesisData || { domains: [], insights: [], report: { totalInsights: 0, totalDomains: 0, averageNovelty: 0, averageConfidence: 0 }, evolution: { topDomains: [] } }
+  const { domains = [], insights = [], report, evolution } = synthesisData || {}
+  
+  // Add safety check for report object
+  const safeReport = report || { totalInsights: 0, totalDomains: 0, averageNovelty: 0, averageConfidence: 0 }
+  const safeEvolution = evolution || { topDomains: [] }
 
   return (
     <div style={{ 
@@ -154,8 +158,8 @@ export function CognitiveInsights() {
           textTransform: 'uppercase',
           letterSpacing: '1px'
         }}>
-          {report.totalInsights > 5 ? 'Advanced' :
-           report.totalInsights > 2 ? 'Intermediate' : 'Emerging'} Cognitive Synthesis
+          {safeReport.totalInsights > 5 ? 'Advanced' :
+           safeReport.totalInsights > 2 ? 'Intermediate' : 'Emerging'} Cognitive Synthesis
         </div>
       </div>
 
@@ -163,19 +167,19 @@ export function CognitiveInsights() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
         <div>
           <span style={{ color: 'var(--j-text3)' }}>Domains:</span>{' '}
-          <span style={{ color: 'var(--j-purple)' }}>{report.totalDomains}</span>
+          <span style={{ color: 'var(--j-purple)' }}>{safeReport.totalDomains}</span>
         </div>
         <div>
           <span style={{ color: 'var(--j-text3)' }}>Insights:</span>{' '}
-          <span style={{ color: 'var(--j-cyan)' }}>{report.totalInsights}</span>
+          <span style={{ color: 'var(--j-cyan)' }}>{safeReport.totalInsights}</span>
         </div>
         <div>
           <span style={{ color: 'var(--j-text3)' }}>Novelty:</span>{' '}
-          <span style={{ color: 'var(--j-gold)' }}>{Math.round(report.averageNovelty * 100)}%</span>
+          <span style={{ color: 'var(--j-gold)' }}>{Math.round(safeReport.averageNovelty * 100)}%</span>
         </div>
         <div>
           <span style={{ color: 'var(--j-text3)' }}>Confidence:</span>{' '}
-          <span style={{ color: 'var(--j-green)' }}>{Math.round(report.averageConfidence * 100)}%</span>
+          <span style={{ color: 'var(--j-green)' }}>{Math.round(safeReport.averageConfidence * 100)}%</span>
         </div>
       </div>
 
@@ -187,10 +191,10 @@ export function CognitiveInsights() {
           borderTop: '1px solid var(--j-bd)' 
         }}>
           {/* Top Domains */}
-          {evolution.topDomains.length > 0 && (
+          {safeEvolution.topDomains.length > 0 && (
             <div style={{ marginBottom: '8px' }}>
               <div style={{ color: 'var(--j-text3)', marginBottom: '4px' }}>TOP COGNITIVE DOMAINS</div>
-              {evolution.topDomains.map((domain, index) => {
+              {safeEvolution.topDomains.map((domain, index) => {
                 const domainData = domains.find(d => d.name === domain)
                 return (
                   <div key={domain} style={{ 
@@ -290,10 +294,10 @@ export function CognitiveInsights() {
           )}
 
           {/* Emerging Patterns */}
-          {evolution.emergingPatterns.length > 0 && (
+          {safeEvolution.emergingPatterns.length > 0 && (
             <div>
               <div style={{ color: 'var(--j-text3)', marginBottom: '4px' }}>EMERGING PATTERNS</div>
-              {evolution.emergingPatterns.map((pattern, index) => (
+              {safeEvolution.emergingPatterns.map((pattern, index) => (
                 <div key={index} style={{ 
                   color: 'var(--j-text2)', 
                   fontSize: '7px',
