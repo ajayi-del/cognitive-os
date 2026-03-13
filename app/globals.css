@@ -30,9 +30,10 @@ html, body {
 }
 
 .j-main {
-  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
   overflow-y: auto;
   overflow-x: hidden;
+  padding-bottom: 2rem;
 }
 
 .chat-messages {

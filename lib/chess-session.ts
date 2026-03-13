@@ -5,9 +5,7 @@
 import { prisma } from './prisma'
 
 // Import chess.js for move validation and game state
-// Note: This would require installing chess.js package
-// npm install chess.js @types/chess.js
-declare const Chess: any // Placeholder - would be: import Chess from 'chess.js'
+import Chess from 'chess.js'
 
 export interface ChessGameState {
   id: string

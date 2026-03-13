@@ -56,7 +56,7 @@ export default function HomePage() {
     <ErrorBoundary>
       <div className="j-root">
         {/* Main Content Area */}
-        <div className="j-main" style={{ minHeight: '100vh', overflowY: 'auto' }}>
+        <div className="j-main">
           
           {/* Navigation */}
           <div className="j-nav">
